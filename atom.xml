@@ -43,24 +43,27 @@
     <title></title>
     <link href="http://www.shiptux.cn/2018/04/21/Something-Wrong/"/>
     <id>http://www.shiptux.cn/2018/04/21/Something-Wrong/</id>
-    <published>2018-04-21T05:44:52.081Z</published>
-    <updated>2018-04-21T05:43:05.696Z</updated>
+    <published>2018-04-21T03:20:25.000Z</published>
+    <updated>2018-04-21T05:50:39.378Z</updated>
     
-    <content type="html"><![CDATA[<p>Markdown 使用和文章错误总结</p><ol><li>首字母大写 </li></ol>]]></content>
+    <content type="html"><![CDATA[<ol><li><p>首字母大写 <code>Windows</code>， <code>Linux</code></p></li><li><p>注意中英文之间的空格以及翻译的一致性 实用 <code>SSH</code> 克隆</p></li><li><p>版权问题 </p></li><li><p>&lt; code&gt; 之类的标签以 &lt; code&gt;起 &lt; /code&gt; 终 如 <code>dnf update</code> </p></li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Markdown 使用和文章错误总结&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;首字母大写 &lt;/li&gt;
-&lt;/ol&gt;
-
+        &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;首字母大写 &lt;code&gt;Windows&lt;/code&gt;， &lt;code&gt;Linux&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;注意中英文之间的空格以及翻译的一致性 实用 &lt;code&gt;SSH&lt;/code&gt; 克隆&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;版权问题 
       
     
     </summary>
     
+    
+      <category term="经验" scheme="http://www.shiptux.cn/tags/%E7%BB%8F%E9%AA%8C/"/>
     
   </entry>
   
