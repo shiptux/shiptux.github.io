@@ -73,6 +73,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="我的折腾手记" type="application/atom+xml" />
 
@@ -81,13 +83,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的折腾手记">
-<meta property="og:url" content="http://www.shiptux.cn/index.html">
+<meta name="description" content="当我打算尝试安装 nextcloud 的时候我的闲置主机网络出现了问题  系统使用的是 Fedora Server ，我求助了 FZUG -Fedora 中文用户组，他们在我上次的投稿中给了我很多实用的建 议 经过 Fedora Zhongwen User Group 的 Zamir SUN 和 Alick Zhao 的帮助下解决了问题 我的一些不好的操作习惯给我引来了麻烦–我使用命令行配置了静态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="构建一个自己的云盘">
+<meta property="og:url" content="http://www.shiptux.cn/2018/04/21/my-ownlcoud/index.html">
 <meta property="og:site_name" content="我的折腾手记">
+<meta property="og:description" content="当我打算尝试安装 nextcloud 的时候我的闲置主机网络出现了问题  系统使用的是 Fedora Server ，我求助了 FZUG -Fedora 中文用户组，他们在我上次的投稿中给了我很多实用的建 议 经过 Fedora Zhongwen User Group 的 Zamir SUN 和 Alick Zhao 的帮助下解决了问题 我的一些不好的操作习惯给我引来了麻烦–我使用命令行配置了静态">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.shiptux.cn/img/2018/04/21/error.png">
+<meta property="og:image" content="http://www.shiptux.cn/img/2018/04/21/Image.png">
+<meta property="og:updated_time" content="2018-04-21T05:48:24.682Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的折腾手记">
+<meta name="twitter:title" content="构建一个自己的云盘">
+<meta name="twitter:description" content="当我打算尝试安装 nextcloud 的时候我的闲置主机网络出现了问题  系统使用的是 Fedora Server ，我求助了 FZUG -Fedora 中文用户组，他们在我上次的投稿中给了我很多实用的建 议 经过 Fedora Zhongwen User Group 的 Zamir SUN 和 Alick Zhao 的帮助下解决了问题 我的一些不好的操作习惯给我引来了麻烦–我使用命令行配置了静态">
+<meta name="twitter:image" content="http://www.shiptux.cn/img/2018/04/21/error.png">
 
 
 
@@ -117,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://www.shiptux.cn/"/>
+  <link rel="canonical" href="http://www.shiptux.cn/2018/04/21/my-ownlcoud/"/>
 
 
 
 
 
-  <title>我的折腾手记</title>
+  <title>构建一个自己的云盘 | 我的折腾手记</title>
   
 
 
@@ -142,8 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -216,9 +224,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -248,9 +256,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/21/my-ownlcoud/" itemprop="url">构建一个自己的云盘</a></h1>
+          <h1 class="post-title" itemprop="name headline">构建一个自己的云盘</h1>
         
 
         <div class="post-meta">
@@ -300,9 +306,7 @@
       
 
       
-        
-          
-            <p>当我打算尝试安装 <code>nextcloud</code> 的时候我的闲置主机网络出现了问题</p>
+        <p>当我打算尝试安装 <code>nextcloud</code> 的时候我的闲置主机网络出现了问题</p>
 <p><img src="/img/2018/04/21/error.png" alt="error"></p>
 <p>系统使用的是 <code>Fedora Server</code> ，我求助了 <code>FZUG -Fedora</code> 中文用户组，他们在我上次的投稿中给了我很多实用的建</p>
 <p>议</p>
@@ -386,8 +390,6 @@
 <p> <img src="/img/2018/04/21/Image.png" alt="Image"></p>
 <p> [Mariadb安装之后的各种设置]： <a href="https://blog.csdn.net/zhezhebie/article/details/73549741" target="_blank" rel="noopener">https://blog.csdn.net/zhezhebie/article/details/73549741</a></p>
 
-          
-        
       
     </div>
     
@@ -404,135 +406,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.shiptux.cn/2018/04/21/Something-Wrong/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shiptux">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我的折腾手记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/21/Something-Wrong/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-21T13:44:52+08:00">
-                2018-04-21
-              </time>
+              <a href="/2018/04/21/Something-Wrong/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Markdown 使用和文章错误总结</p>
-<ol>
-<li>首字母大写 </li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -542,10 +437,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -553,6 +449,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -764,6 +664,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
