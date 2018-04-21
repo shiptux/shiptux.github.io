@@ -92,7 +92,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.shiptux.cn/img/2018/04/21/error.png">
 <meta property="og:image" content="http://www.shiptux.cn/img/2018/04/21/Image.png">
-<meta property="og:updated_time" content="2018-04-21T06:04:18.305Z">
+<meta property="og:updated_time" content="2018-04-21T06:06:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="构建一个自己的云盘">
 <meta name="twitter:description" content="当我打算尝试安装 nextcloud 的时候我的闲置主机网络出现了问题  系统使用的是 Fedora Server ，我求助了 FZUG -Fedora 中文用户组，他们在我上次的投稿中给了我很多实用的建 议 经过 Fedora Zhongwen User Group 的 Zamir SUN 和 Alick Zhao 的帮助下解决了问题 我的一些不好的操作习惯给我引来了麻烦–我使用命令行配置了静态">
@@ -314,8 +314,8 @@
 <p>我的一些不好的操作习惯给我引来了麻烦–我使用命令行配置了静态 IP 但是我并没有禁用 <code>Network Manager</code> </p>
 <p><code>nmcli</code> 是命令行下的配置工具</p>
 <p><code>nmtui</code> 是 <code>text-based-ui</code> 下的配置工具 </p>
-<p>不使用的话建议禁用或在配置文件中加入 NM-CONTROLLED=no</p>
-<p>##安装NextCloud</p>
+<p>不使用的话建议禁用或在配置文件中加入 <code>NM-CONTROLLED=no</code></p>
+<p>##安装<code>NextCloud</code></p>
 <ol>
 <li><p>更新软件包</p>
 <p><code> dnf update </code></p>
@@ -323,7 +323,7 @@
 <li><p>安装nextcloud</p>
 <p><code> dnf install -y nextcloud-nginx.noarch nextcloud.noarch </code></p>
 </li>
-<li><p>安装数据库 mariadb</p>
+<li><p>安装数据库 <code>mariadb</code></p>
 <p><code> dnf install -y mariadb mariadb-server </code></p>
 </li>
 <li><p>启动</p>
