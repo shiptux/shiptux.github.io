@@ -12,7 +12,7 @@
     </entry>
     
     <entry>
-      <title></title>
+      <title>Markdown使用和文章错误总结</title>
       <link href="/2018/04/21/Something-Wrong/"/>
       <url>/2018/04/21/Something-Wrong/</url>
       <content type="html"><![CDATA[<ol><li><p>首字母大写 <code>Windows</code>， <code>Linux</code></p></li><li><p>注意中英文之间的空格以及翻译的一致性 实用 <code>SSH</code> 克隆</p></li><li><p>版权问题 </p></li><li><p>&lt; code&gt; 之类的标签以 &lt; code&gt;起 &lt; /code&gt; 终 如 <code>dnf update</code> </p></li></ol>]]></content>
