@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>shiptux&#39;s blog</title>
-  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-">
+  <title>如何向 Github 添加 ssh key</title>
+  <meta name="description" content="  如果你的电脑还没有安装 SSH , 先使用包管理器安装">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://yourdomain.com/">
+  <link rel="canonical" href="http://yourdomain.com/tutorial/2018/05/21/Add-key-2-github.html">
   <link rel="alternate" type="application/rss+xml" title="shiptux's blog" href="http://yourdomain.com/feed.xml">
 </head>
 
@@ -55,33 +54,77 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">如何向 Github 添加 ssh key</h1>
+    <p class="post-meta"><time datetime="2018-05-21T19:34:01+08:00" itemprop="datePublished">May 21, 2018</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">shiptux</span></span></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">May 21, 2018</span>
+  <div class="post-content" itemprop="articleBody">
+    <ol>
+  <li>
+    <p>如果你的电脑还没有安装 <code class="highlighter-rouge">SSH</code> , 先使用包管理器安装</p>
+  </li>
+  <li>
+    <p>生成 <code class="highlighter-rouge">SSH</code> 密钥对</p>
+  </li>
+</ol>
 
-        <h2>
-          <a class="post-link" href="/tutorial/2018/05/21/jekyll-n-date.html">jekyll对日期的敏感</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 21, 2018</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   ubuntu@ubuntu1:~$ ssh-keygen
+   Generating public/private rsa key pair.
+   Enter file in which to save the key (/home/ubuntu/.ssh/id_rsa): 
+   Enter passphrase (empty for no passphrase): 
+   Enter same passphrase again: 
+   Your identification has been saved in /home/ubuntu/.ssh/id_rsa.
+   Your public key has been saved in /home/ubuntu/.ssh/id_rsa.pub.
+   The key fingerprint is:
+   SHA256:EfVw8ti8MM7HCPqQZSsdNjR8zwqZ1vMHSuJ1oNEtPlA ubuntu@ubuntu1
+   The key's randomart image is:
+   +---[RSA 2048]----+
+   |       .++E..    |
+   |       .+o=X.    |
+   |        OX+==    |
+   |       BBOB==.   |
+   |      =oS=+B+.   |
+   |       +. o.. .  |
+   |        .    .   |
+   |                 |
+   |                 |
+   +----[SHA256]-----+
+   ​```
+</code></pre></div></div>
 
-        <h2>
-          <a class="post-link" href="/tutorial/2018/05/21/Add-key-2-github.html">如何向 Github 添加 ssh key</a>
-        </h2>
-      </li>
-    
-  </ul>
+<ol>
+  <li>查看公钥内容</li>
+</ol>
 
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   ubuntu@ubuntu1:~$ cat .ssh/id_rsa.pub 
+   ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCv/t7Qj0BbnwCGn2PQg1qYNYxEO2UQyN/2aD8ujr0y0vHHF/0RXp2d4gnZkNTUOZfhnrhTVceT7hi7a+JBXWq7Ceatpy5JW30wmpw2RDtR5yIEDiOLoIFXVtPRSo4BpmDCQGvGw4ihRRuUvltq3LinaWqAPtTStq2xiPyC/ZRNMdHRB9zFMnoDDsZzaQNKvXumpnAmK9KzdFsEdmUpQ3oOMwXAMgMkUVZYscf9LbLCfoDDJK4ThYPb6lSMrFlmXonKJtwdccw2/gMVqWaK1c3fsoOr1nTEjq4tuCOwXNFXEg4fUJrx5ws3zbr0OJ4DCrZSoBNAy9v9WfT+vAA4EZ2V ubuntu@ubuntu1
+   ​```
+</code></pre></div></div>
 
-</div>
+<ol>
+  <li>
+    <p>复制内容到 <code class="highlighter-rouge">Github</code></p>
+
+    <p>点击右上角自己的头像后</p>
+
+    <p><img src="/assets/2018/05/21/hp.png" alt="hp" /></p>
+
+    <p>点击设置选择 <code class="highlighter-rouge">SSH and GPG keys</code></p>
+
+    <p><img src="/assets/2018/05/21/ssh.png" alt="ssh" /></p>
+
+    <p>点击 <code class="highlighter-rouge">New SSH key</code> 并复制文件内容至此</p>
+
+    <p><img src="/assets/2018/05/21/newkey.png" alt="newkey" /></p>
+  </li>
+</ol>
+
+  </div>
+
+</article>
 
       </div>
     </div>

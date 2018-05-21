@@ -1,16 +1,10 @@
 ---
-
 layout: post
-
 title:  "如何向 Github 添加 ssh key"
-
 date:   2018-05-21 19:34:01 +0800
-
 categories: tutorial
-
+author: shiptux
 ---
-
-
 
 0.  如果你的电脑还没有安装 `SSH` , 先使用包管理器安装
 
@@ -42,7 +36,6 @@ categories: tutorial
    ```
 
    
-
 2.  查看公钥内容
 
    ```
