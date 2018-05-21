@@ -1,0 +1,23 @@
+<p>在购买一些主机商的服务后，有时他们提供的镜像中带了一些卸载不掉的东西就像是买了手机预装了软件一样，这时候我们选择手动安装纯净版。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget --no-check-certificate -qO DebianNET.sh "http://status.moruy.cn/DebianNET.sh" &amp;&amp; chmod a+x DebianNET.sh
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">Centos</code> 先要安装 <code class="highlighter-rouge">gawk</code> <code class="highlighter-rouge">sed</code> <code class="highlighter-rouge">grep</code></p>
+
+<p><code>sudo yum install -y gawk sed grep &lt; /code&gt;</code></p>
+
+<p>切换到超级用户</p>
+
+<p><code>sudo -i &lt; /code&gt;</code></p>
+
+<p>安装 <code class="highlighter-rouge">Ubuntu 16.04 x64</code> :</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash DebianNET.sh -u xenial -v 64
+</code></pre></div></div>
+
+<p>安装 <code class="highlighter-rouge">Debian 8 x64</code> :</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash DebianNET.sh -d jessie -v amd64
+bash DEbianNET.sh -d 8 -v 64
+</code></pre></div></div>
+
+<p>第一步选择 <code class="highlighter-rouge">n</code></p>

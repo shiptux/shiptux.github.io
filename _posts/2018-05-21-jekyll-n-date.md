@@ -25,4 +25,4 @@ categories: tutorial
 
 4. 找基本模板
 
-在一个空文件夹中执行 <code>jekyll new dir< /code> 发现自带的 `Markdown` 文件的前缀是日期，将自己的更改的和它一样，完美运行。 
+在一个空文件夹中执行 <code>jekyll new dir </code> 发现自带的 `Markdown` 文件的前缀是日期，将自己的更改的和它一样，完美运行。 

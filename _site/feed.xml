@@ -6,9 +6,42 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 21 May 2018 20:27:28 +0800</pubDate>
-    <lastBuildDate>Mon, 21 May 2018 20:27:28 +0800</lastBuildDate>
+    <pubDate>Mon, 21 May 2018 20:46:34 +0800</pubDate>
+    <lastBuildDate>Mon, 21 May 2018 20:46:34 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>给云主机重装系统</title>
+        <description>&lt;p&gt;在购买一些主机商的服务后，有时他们提供的镜像中带了一些卸载不掉的东西就像是买了手机预装了软件一样，这时候我们选择手动安装纯净版。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget --no-check-certificate -qO DebianNET.sh &quot;http://status.moruy.cn/DebianNET.sh&quot; &amp;amp;&amp;amp; chmod a+x DebianNET.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Centos&lt;/code&gt; 先要安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;gawk&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo yum install -y gawk sed grep &amp;lt; /code&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;切换到超级用户&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo -i &amp;lt; /code&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ubuntu 16.04 x64&lt;/code&gt; :&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash DebianNET.sh -u xenial -v 64
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;Debian 8 x64&lt;/code&gt; :&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash DebianNET.sh -d jessie -v amd64
+bash DEbianNET.sh -d 8 -v 64
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;第一步选择 &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 21 May 2018 20:31:01 +0800</pubDate>
+        <link>http://yourdomain.com/2018/05/21/Reinstall-system.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2018/05/21/Reinstall-system.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>jekyll对日期的敏感</title>
@@ -43,7 +76,7 @@
   &lt;li&gt;找基本模板&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;在一个空文件夹中执行 &lt;code&gt;jekyll new dir&amp;lt; /code&amp;gt; 发现自带的 `Markdown` 文件的前缀是日期，将自己的更改的和它一样，完美运行。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在一个空文件夹中执行 &lt;code&gt;jekyll new dir &lt;/code&gt; 发现自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Markdown&lt;/code&gt; 文件的前缀是日期，将自己的更改的和它一样，完美运行。&lt;/p&gt;
 </description>
         <pubDate>Mon, 21 May 2018 20:17:01 +0800</pubDate>
         <link>http://yourdomain.com/tutorial/2018/05/21/jekyll-n-date.html</link>
