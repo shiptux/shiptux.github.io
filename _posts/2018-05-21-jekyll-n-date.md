@@ -9,9 +9,9 @@ categories: tutorial
 
 1. 重新生成
 
- <code>jekyll build< /code>
+ <code>jekyll build </code>
 
- <code>jekyll server< /code>
+ <code>jekyll server </code>
 
  结果没有奏效
 
