@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "安装 DNScrypt 和通过 SNAP 安装主题"
+title: "安装 DNScrypt 和通过 Snap 安装主题"
 author: shiptux
 date: 2018-05-22 13:34 +800
 ---
