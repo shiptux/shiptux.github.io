@@ -6,9 +6,110 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 23 May 2018 13:47:39 +0800</pubDate>
-    <lastBuildDate>Wed, 23 May 2018 13:47:39 +0800</lastBuildDate>
+    <pubDate>Sat, 26 May 2018 14:36:33 +0800</pubDate>
+    <lastBuildDate>Sat, 26 May 2018 14:36:33 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>补充关于sudoer无密码的设置</title>
+        <description>&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt; 命令是我的一个常用命令,可以让普通用户借用超级用户的权限。以往我在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Fedora&lt;/code&gt; 下的时候，往往 &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt; 用户的密码设置是为空的，因为本身不需要作太多安全性考虑怎么方便怎么来。但是在部分发行版下禁止密码为空。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;参考网上资料。切换到 &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; 用户执行 &lt;code&gt;visudo&lt;/code&gt; 或者用 &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt; 用户执行 &lt;code&gt;sudo visudo&lt;/code&gt; 。这里不建议直接编辑&lt;code class=&quot;highlighter-rouge&quot;&gt;sudoer&lt;/code&gt; 文件&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# User privilege specification
+root    ALL=(ALL:ALL) ALL
+ubuntu  ALL=(ALL:ALL) ALL
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;一般教程往往建议在 &lt;code&gt;root    ALL=(ALL:ALL) ALL&lt;/code&gt; 下增添或者修改为 &lt;code&gt;ubuntu  ALL=(ALL:ALL) NOPASSWD:ALL&lt;/code&gt; 但是我在实际使用中发现这样还是需要每次输入密码，而且系统下已经有 &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt; 用户组权限的设置 我将最后一行 &lt;code&gt;sudo ALL=(ALL:ALL) ALL&lt;/code&gt; 改为 &lt;code&gt;sudo ALL=(ALL:ALL) NOPASSWD:ALL&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 26 May 2018 14:12:22 +0800</pubDate>
+        <link>http://yourdomain.com/2018/05/26/Nopawd-sudoer.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2018/05/26/Nopawd-sudoer.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>使用cron定时推送jekyll博客</title>
+        <description>&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用定时服务可以大大减少重复性的劳动工作，有效解放劳动力&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;首先我在  &lt;code&gt;/home/ubuntu/script/&lt;/code&gt; 目录新建一个简单 &lt;code class=&quot;highlighter-rouge&quot;&gt;shell&lt;/code&gt; 文件记录一些关于推送的操作&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ubuntu&lt;/code&gt; 下使用来进行 &lt;code class=&quot;highlighter-rouge&quot;&gt;Crontab&lt;/code&gt; 定时调度该脚本&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;crontab &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; 指定用户 &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 列出任务计划 &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; 删除任务计划 &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt;编辑任务
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;直接编辑 &lt;code&gt;/etc/crontab&lt;/code&gt; 或者使用&lt;code&gt;crontab -e&lt;/code&gt; 命令编辑调度任务&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;第一次执行 &lt;code&gt;crontab -e&lt;/code&gt; 会提示选择编辑器&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ubuntu@ubuntu1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;crontab &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt;
+no crontab &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;root - using an empty one
+
+Select an editor.  To change later, run &lt;span class=&quot;s1&quot;&gt;&#39;select-editor&#39;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  1. /bin/nano        &amp;lt;&lt;span class=&quot;nt&quot;&gt;----&lt;/span&gt; easiest
+  2. /usr/bin/vim.basic
+  3. /usr/bin/vim.tiny
+  4. /usr/bin/emacs25
+  5. /usr/bin/code
+  6. /bin/ed
+
+Choose 1-6 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1]: 5
+You are trying to start vscode as a super user which is not recommended. If you really want to, you must specify an alternate user data directory using the &lt;span class=&quot;nt&quot;&gt;--user-data-dir&lt;/span&gt; argument.
+crontab: &lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/sensible-editor&quot;&lt;/span&gt; exited with status 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Cron格式&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;分    小时   日     月    星期  命令
+0-59  0-23  1-31  1-12  0-6   命令或者脚本路径
+特殊符号：&lt;/p&gt;
+
+&lt;p&gt;“*“:可以填充不指定的字段&lt;/p&gt;
+
+&lt;p&gt;”/”：“每”&lt;/p&gt;
+
+&lt;p&gt;”-“: 从某个数到另一个数字&lt;/p&gt;
+
+&lt;p&gt;”,”：分开几个离散的数字&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;启动服务&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;查看服务是否运行&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ps -ax | grep cron&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;使用 &lt;code&gt;sudo service cron start&lt;/code&gt; 启动&lt;/p&gt;
+</description>
+        <pubDate>Tue, 22 May 2018 22:20:20 +0800</pubDate>
+        <link>http://yourdomain.com/2018/05/22/crontab-2-jekyll.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2018/05/22/crontab-2-jekyll.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>安装 DNScrypt 和通过 SNAP 安装主题</title>

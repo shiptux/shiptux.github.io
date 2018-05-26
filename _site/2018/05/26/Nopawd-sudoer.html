@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>shiptux&#39;s blog</title>
-  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-">
+  <title>补充关于sudoer无密码的设置</title>
+  <meta name="description" content="  sudo 命令是我的一个常用命令,可以让普通用户借用超级用户的权限。以往我在 Fedora 下的时候，往往 sudo 用户的密码设置是为空的，因为本身不需要作太多安全性考虑怎么方便怎么来。但是在部分发行版下禁止密码为空。">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://yourdomain.com/">
+  <link rel="canonical" href="http://yourdomain.com/2018/05/26/Nopawd-sudoer.html">
   <link rel="alternate" type="application/rss+xml" title="shiptux's blog" href="http://yourdomain.com/feed.xml">
 </head>
 
@@ -55,65 +54,37 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">补充关于sudoer无密码的设置</h1>
+    <p class="post-meta"><time datetime="2018-05-26T14:12:22+08:00" itemprop="datePublished">May 26, 2018</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">shiptux</span></span></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">May 26, 2018</span>
+  <div class="post-content" itemprop="articleBody">
+    <ol>
+  <li>
+    <p><code class="highlighter-rouge">sudo</code> 命令是我的一个常用命令,可以让普通用户借用超级用户的权限。以往我在 <code class="highlighter-rouge">Fedora</code> 下的时候，往往 <code class="highlighter-rouge">sudo</code> 用户的密码设置是为空的，因为本身不需要作太多安全性考虑怎么方便怎么来。但是在部分发行版下禁止密码为空。</p>
+  </li>
+  <li>
+    <p>参考网上资料。切换到 <code class="highlighter-rouge">root</code> 用户执行 <code>visudo</code> 或者用 <code class="highlighter-rouge">sudo</code> 用户执行 <code>sudo visudo</code> 。这里不建议直接编辑<code class="highlighter-rouge">sudoer</code> 文件</p>
+  </li>
+</ol>
 
-        <h2>
-          <a class="post-link" href="/2018/05/26/Nopawd-sudoer.html">补充关于sudoer无密码的设置</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 22, 2018</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># User privilege specification
+root    ALL=(ALL:ALL) ALL
+ubuntu  ALL=(ALL:ALL) ALL
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+</code></pre></div></div>
 
-        <h2>
-          <a class="post-link" href="/2018/05/22/crontab-2-jekyll.html">使用cron定时推送jekyll博客</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 22, 2018</span>
+<p>一般教程往往建议在 <code>root    ALL=(ALL:ALL) ALL</code> 下增添或者修改为 <code>ubuntu  ALL=(ALL:ALL) NOPASSWD:ALL</code> 但是我在实际使用中发现这样还是需要每次输入密码，而且系统下已经有 <code class="highlighter-rouge">sudo</code> 用户组权限的设置 我将最后一行 <code>sudo ALL=(ALL:ALL) ALL</code> 改为 <code>sudo ALL=(ALL:ALL) NOPASSWD:ALL</code></p>
 
-        <h2>
-          <a class="post-link" href="/2018/05/22/Install-dnscrypt-proxy.html">安装 DNScrypt 和通过 SNAP 安装主题</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 21, 2018</span>
+  </div>
 
-        <h2>
-          <a class="post-link" href="/2018/05/21/Reinstall-system.html">给云主机重装系统</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 21, 2018</span>
-
-        <h2>
-          <a class="post-link" href="/tutorial/2018/05/21/jekyll-n-date.html">jekyll对日期的敏感</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 21, 2018</span>
-
-        <h2>
-          <a class="post-link" href="/tutorial/2018/05/21/Add-key-2-github.html">如何向 Github 添加 ssh key</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
-
-</div>
+</article>
 
       </div>
     </div>

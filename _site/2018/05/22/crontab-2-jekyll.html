@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>shiptux&#39;s blog</title>
-  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-">
+  <title>使用cron定时推送jekyll博客</title>
+  <meta name="description" content="  使用定时服务可以大大减少重复性的劳动工作，有效解放劳动力">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://yourdomain.com/">
+  <link rel="canonical" href="http://yourdomain.com/2018/05/22/crontab-2-jekyll.html">
   <link rel="alternate" type="application/rss+xml" title="shiptux's blog" href="http://yourdomain.com/feed.xml">
 </head>
 
@@ -55,65 +54,80 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">使用cron定时推送jekyll博客</h1>
+    <p class="post-meta"><time datetime="2018-05-22T22:20:20+08:00" itemprop="datePublished">May 22, 2018</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">shiptux</span></span></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">May 26, 2018</span>
+  <div class="post-content" itemprop="articleBody">
+    <ol>
+  <li>
+    <p>使用定时服务可以大大减少重复性的劳动工作，有效解放劳动力</p>
+  </li>
+  <li>
+    <p>首先我在  <code>/home/ubuntu/script/</code> 目录新建一个简单 <code class="highlighter-rouge">shell</code> 文件记录一些关于推送的操作</p>
+  </li>
+  <li>
+    <p>在 <code class="highlighter-rouge">Ubuntu</code> 下使用来进行 <code class="highlighter-rouge">Crontab</code> 定时调度该脚本</p>
+  </li>
+</ol>
 
-        <h2>
-          <a class="post-link" href="/2018/05/26/Nopawd-sudoer.html">补充关于sudoer无密码的设置</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 22, 2018</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crontab <span class="nt">-u</span> 指定用户 <span class="nt">-l</span> 列出任务计划 <span class="nt">-r</span> 删除任务计划 <span class="nt">-e</span>编辑任务
+</code></pre></div></div>
 
-        <h2>
-          <a class="post-link" href="/2018/05/22/crontab-2-jekyll.html">使用cron定时推送jekyll博客</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 22, 2018</span>
+<ul>
+  <li>直接编辑 <code>/etc/crontab</code> 或者使用<code>crontab -e</code> 命令编辑调度任务</li>
+</ul>
 
-        <h2>
-          <a class="post-link" href="/2018/05/22/Install-dnscrypt-proxy.html">安装 DNScrypt 和通过 SNAP 安装主题</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 21, 2018</span>
+<p>第一次执行 <code>crontab -e</code> 会提示选择编辑器</p>
 
-        <h2>
-          <a class="post-link" href="/2018/05/21/Reinstall-system.html">给云主机重装系统</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 21, 2018</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ubuntu@ubuntu1:~<span class="nv">$ </span><span class="nb">sudo </span>crontab <span class="nt">-e</span>
+no crontab <span class="k">for </span>root - using an empty one
 
-        <h2>
-          <a class="post-link" href="/tutorial/2018/05/21/jekyll-n-date.html">jekyll对日期的敏感</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">May 21, 2018</span>
+Select an editor.  To change later, run <span class="s1">'select-editor'</span><span class="nb">.</span>
+  1. /bin/nano        &lt;<span class="nt">----</span> easiest
+  2. /usr/bin/vim.basic
+  3. /usr/bin/vim.tiny
+  4. /usr/bin/emacs25
+  5. /usr/bin/code
+  6. /bin/ed
 
-        <h2>
-          <a class="post-link" href="/tutorial/2018/05/21/Add-key-2-github.html">如何向 Github 添加 ssh key</a>
-        </h2>
-      </li>
-    
-  </ul>
+Choose 1-6 <span class="o">[</span>1]: 5
+You are trying to start vscode as a super user which is not recommended. If you really want to, you must specify an alternate user data directory using the <span class="nt">--user-data-dir</span> argument.
+crontab: <span class="s2">"/usr/bin/sensible-editor"</span> exited with status 1
+</code></pre></div></div>
 
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+<ol>
+  <li>Cron格式</li>
+</ol>
 
-</div>
+<p>分    小时   日     月    星期  命令
+0-59  0-23  1-31  1-12  0-6   命令或者脚本路径
+特殊符号：</p>
+
+<p>“*“:可以填充不指定的字段</p>
+
+<p>”/”：“每”</p>
+
+<p>”-“: 从某个数到另一个数字</p>
+
+<p>”,”：分开几个离散的数字</p>
+
+<ol>
+  <li>启动服务</li>
+</ol>
+
+<p>查看服务是否运行</p>
+
+<p><code>ps -ax | grep cron</code></p>
+
+<p>使用 <code>sudo service cron start</code> 启动</p>
+
+  </div>
+
+</article>
 
       </div>
     </div>
