@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "如何向 Github 添加 ssh key"
+title:  "如何向 Github 添加 SSH KEY"
 date:   2018-05-21 19:34:01 +0800
 categories: tutorial
 author: shiptux
