@@ -1,6 +1,6 @@
 ---
-title: "如何安装双系统"
 layout: post
+title: "如何安装双系统"
 author: licheng
 date: 2018-09-11 08:02:00
 categories: tutorial
