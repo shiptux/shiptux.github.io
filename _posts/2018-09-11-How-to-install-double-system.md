@@ -16,9 +16,7 @@ categories: tutorial
 
 	<https://www.ubuntu.com/download/desktop>
 
-	![Download]({{site.baseurl}}/assets/2018/09/11/Download.png)
-	
-	![Fork](/assets/2018/03/24/fork.png)
+	![Download](/assets/2018/09/11/Download.png)
 
 2. 使用 U 盘刻录你的系统文件 在 `Windows` 下使用 UltraIso 或者其他类似软件刻录
 
