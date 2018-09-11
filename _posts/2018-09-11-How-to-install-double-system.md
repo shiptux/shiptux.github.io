@@ -8,7 +8,7 @@ categories: tutorial
 
 本篇介绍如何安装双系统，以 `Windows` 与 `Linux` 为双系统。 `Linux` 发行版选用 `Ubuntu-18.04` 本篇假设你使用 
 
-##准备工作
+## 准备工作
 
 0. 原料：U 盘，个人电脑，你聪明的大脑。
 
@@ -16,7 +16,7 @@ categories: tutorial
 
 	<https://www.ubuntu.com/download/desktop>
 
-	![Download](/assets/2018/09/11/Download.png)
+	![Download]({{site.baseurl}}/assets/2018/09/11/Download.png)
 
 2. 使用 U 盘刻录你的系统文件 在 `Windows` 下使用 UltraIso 或者其他类似软件刻录
 
@@ -54,7 +54,7 @@ categories: tutorial
 
 5. 重启 选择从 U 盘启动 具体方法百度搜索 "你的电脑品牌+进入bios方法"
 
-##安装过程
+## 安装过程
 
 0. 进入 `Ubuntu` 安装界面后选择 "Try ubuntu without install" 或者 "Install ubuntu"
 
@@ -74,11 +74,11 @@ categories: tutorial
 
 4. 这里不要选择清楚磁盘案子 `Ubuntu` 而是应该使用 "安装 Ubuntu 与 Windows boot manager 共存"
 
-![Start](/assets/2018/09/11/Start.png)
+	![Start](/assets/2018/09/11/Start.png)
 
 5. 弹出分区发生改变 请点击是 然后 接着设置时区 用户名 即可。等待一段时间，选择立即重启，拔出 U 盘
 
-##安装之后的设置
+## 安装之后的设置
 
 ```bash
 
@@ -95,6 +95,6 @@ sudo apt install fcitx fcitx-sunpinyin fcitx-pinyin -y
 sudo apt install vim gcc git -y
 ```
 
-![set](/assets/2018/09/11/set.png)
+	![set](/assets/2018/09/11/set.png)
 
 现在享受它吧。
