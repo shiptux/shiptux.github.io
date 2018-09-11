@@ -1,8 +1,9 @@
 ---
-title: 如何安装双系统
+title: "如何安装双系统"
 layout: post
 author: licheng
 date: 2018-09-11 08:02:00
+categories: tutorial
 ---
 
 本篇介绍如何安装双系统，以 `Windows` 与 `Linux` 为双系统。 `Linux` 发行版选用 `Ubuntu-18.04` 本篇假设你使用 
@@ -15,7 +16,7 @@ date: 2018-09-11 08:02:00
 
 	<https://www.ubuntu.com/download/desktop>
 
-	![Download](/assets/2018/09/11/Downloads.png)
+	![Download](/assets/2018/09/11/Download.png)
 
 2. 使用 U 盘刻录你的系统文件 在 `Windows` 下使用 UltraIso 或者其他类似软件刻录
 
