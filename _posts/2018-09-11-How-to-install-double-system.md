@@ -2,7 +2,7 @@
 title: 如何安装双系统
 layout: post
 author: licheng
-date: 2018-09-10 20:02:00
+date: 2018-09-11 08:02:00
 ---
 
 本篇介绍如何安装双系统，以 `Windows` 与 `Linux` 为双系统。 `Linux` 发行版选用 `Ubuntu-18.04` 本篇假设你使用 
@@ -15,7 +15,7 @@ date: 2018-09-10 20:02:00
 
 	<https://www.ubuntu.com/download/desktop>
 
-![Download](assets/2018/09/10/Downloads.png)
+	![Download](assets/2018/09/11/Downloads.png)
 
 2. 使用 U 盘刻录你的系统文件 在 `Windows` 下使用 UltraIso 或者其他类似软件刻录
 
@@ -23,31 +23,31 @@ date: 2018-09-10 20:02:00
 
 	为你的 `Linux` 系统分区 使用 文件资源管理器->此电脑->管理->存储->磁盘服务->压缩卷或者删除一个卷 记得先把文件移走哦
 	
-![Filemaneage](assets/2018/09/10/Filemaneage.jpg)
+	![Filemaneage](assets/2018/09/11/Filemaneage.jpg)
 
-![Yasuo1](assets/2018/09/10/Yasuo1.jpg)
+	![Yasuo1](assets/2018/09/11/Yasuo1.jpg)
 
-![Yasuo2](assets/2018/09/10/Yasuo2.jpg)
+	![Yasuo2](assets/2018/09/11/Yasuo2.jpg)
 
-![Yasuo3](assets/2018/09/10/Yasuo3.jpg)
+	![Yasuo3](assets/2018/09/11/Yasuo3.jpg)
 
 4. 关闭 Windows 快速启动 
 
-在右下角电源图标按右键
+	在右下角电源图标按右键
 
-![Battle](assets/2018/09/10/Battle.jpg)
+	![Battle](assets/2018/09/11/Battle.jpg)
 
-选择左上角选择电源按钮的功能
+	选择左上角选择电源按钮的功能
 
-![battle1](assets/2018/09/10/battle1.jpg)
+	![battle1](assets/2018/09/11/battle1.jpg)
 
- 选择更改当前不可用的设置
+	 选择更改当前不可用的设置
 
-![battle2](assets/2018/09/10/battle2.jpg)
+	![battle2](assets/2018/09/11/battle2.jpg)
 
-关闭快速启动
+	关闭快速启动
 
-![battle3](assets/2018/09/10/battle3.jpg)
+	![battle3](assets/2018/09/11/battle3.jpg)
 
 保存修改
 
@@ -57,15 +57,15 @@ date: 2018-09-10 20:02:00
 
 0. 进入 `Ubuntu` 安装界面后选择 "Try ubuntu without install" 或者 "Install ubuntu"
 
-![begin](assets/2018/09/10/begin.png)
+	![begin](assets/2018/09/11/begin.png)
 
 1. 将进度条拉到下 可见简体中文
 
-![Chinese](assets/2018/09/10/Chinese.png)
+	![Chinese](assets/2018/09/11/Chinese.png)
 
 2. 键盘设置 如果在第一步已经设置了语言中文 则默认汉语键盘
 
-![Keyboard](assets/2018/09/10/Keyboard.png)
+	![Keyboard](assets/2018/09/11/Keyboard.png)
 
 3. 选择正常安装
 
