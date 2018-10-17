@@ -1,14 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>shiptux&#39;s blog</title>
+    <title>shiptux's blog</title>
     <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 14 Sep 2018 11:56:05 +0800</pubDate>
-    <lastBuildDate>Fri, 14 Sep 2018 11:56:05 +0800</lastBuildDate>
-    <generator>Jekyll v3.1.6</generator>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 18 Oct 2018 03:08:24 +0800</pubDate>
+    <lastBuildDate>Thu, 18 Oct 2018 03:08:24 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.4</generator>
+    
+      <item>
+        <title>记录一下我第一次遇到问题不是重装系统而是却慢慢解决的过程</title>
+        <description>&lt;p&gt;##前情提要&lt;/p&gt;
+
+&lt;p&gt;​	上个月的时候，我兴奋的安装了 &lt;code class=&quot;highlighter-rouge&quot;&gt;Slackware&lt;/code&gt; 。并且兴奋的打算将它更新到 “–current” –Slackware滚动更新版，更多更新的软件，更棒的体验以及更多的 &lt;code class=&quot;highlighter-rouge&quot;&gt;bug&lt;/code&gt;，想想多么的酷炫啊。然后我十分不谨慎的更新了（未查询任何文档手册，未作任何备份，直接敲了命令），只见 &lt;code class=&quot;highlighter-rouge&quot;&gt;CLI&lt;/code&gt; 下如水一般的提示符，过了两个小时就好啦，兴奋的进 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 我的鼠标怎么用不了，重启试试，我的键盘怎么用不了，顿时就懵了。想到我曾经加在书签里的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt; 上的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Slackware&lt;/code&gt; 中文社区，赶紧去找找大神啊。&lt;/p&gt;
+
+&lt;p&gt;​	&lt;a href=&quot;https://github.com/slackwarecn&quot;&gt;Slackware中文社区&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;​	&lt;img src=&quot;/assets/2018/10/17/slackwarecn.png&quot; alt=&quot;slackwarecn&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;​	一共五位成员，三位留下了邮箱我发送了邮件，有两位回复给了我一些建议。一些意见使我反省了一下自己，比如我事先没有备份，没有将内核加入更新的黑名单，最重要的是没有查阅 &lt;a href=&quot;docs.slackware.com&quot;&gt;文档&lt;/a&gt; （这是一个很棒的项目，并且可以在中国境内直接访问，有机会希望我能帮助翻译一部分。)&lt;/p&gt;
+
+&lt;p&gt;##今回&lt;/p&gt;
+
+&lt;p&gt;​	后来我又重新安装了 &lt;code class=&quot;highlighter-rouge&quot;&gt;Slackware-14.2&lt;/code&gt; 并且顺利地更新到了 “–current”,参考文档更新了软件，有一天我突然发现我不能上网了，一直都是在连接，但是连不上。我尝试更改了 /etc/resolv.conf /etc/host.conf 以及其他网络配置相关文件。没有任何效果，我重新进行了一遍系统自带的网络配置过程也没有用。最终束手无策之下我想会不会是驱动出了问题，在谷歌帮助之下我执行命令查看我的网卡硬件版本。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lspci &lt;span class=&quot;nt&quot;&gt;-knn&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;显示的内容是  &lt;code class=&quot;highlighter-rouge&quot;&gt;RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 0c)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;再查看驱动版本&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lshw &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; network
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;输出的驱动 &lt;code class=&quot;highlighter-rouge&quot;&gt;drive=driver=r8169&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;问题很明显了，现在就是驱动出了问题，这个问题不用自己来手动解决，互联网上早已有大神做好了脚本 &lt;a href=&quot;https://github.com/mtorromeo/r8168&quot;&gt;脚本地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2018/10/17/Script.png&quot; alt=&quot;Script&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;事情从来不是一番风顺的嘛，果然安装中出现了错误&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ERROR: could not insert &lt;span class=&quot;s1&quot;&gt;'r8168'&lt;/span&gt;: Exec format error
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这个问题有点坑，谷歌了几圈之后发现了一个哥们跟我遇到一样的问题过，他更新内核到4.7以上解决了这个问题。&lt;/p&gt;
+
+&lt;p&gt;那么我现在遇到的问题就是更新内核，其他发行版的更新往往是执行一条命令的事情，但是我的 Slackware 没有这样的功能，加上我是个小白，于是我去查找了文档，发现文档中有个文档提到了这个 &lt;a href=&quot;https://docs.slackware.com/howtos:slackware_admin:kernelbuilding&quot;&gt;从源代码安装内核&lt;/a&gt; 。但我觉得肯定有更简单的，果不其然我在官方镜像中找到了内核构建脚本，下载了所有文件之后，按照原路径放好，执行文件，脚本自动编译自动安装。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash-4.4# tree kernel-build/
+kernel-build/
+├── build-all-kernels.sh
+├── build-kernel-from-git.pdf
+├── build-kernel-from-source.pdf
+├── kernel-configs
+│   ├── config-generic-4.14.75
+│   ├── config-generic-4.14.75.x64
+│   ├── config-generic-smp-4.14.75-smp
+│   ├── config-huge-4.14.75
+│   ├── config-huge-4.14.75.x64
+│   └── config-huge-smp-4.14.75-smp
+├── kernel-generic.SlackBuild
+├── kernel-headers.SlackBuild
+├── kernel-modules.SlackBuild
+├── kernel-source.SlackBuild
+├── linux-4.14.75.tar.sign
+├── linux-4.14.75.tar.xz
+└── slack-desc
+    ├── slack-desc.kernel-generic.x86_64
+    ├── slack-desc.kernel-headers
+    ├── slack-desc.kernel-huge.x86_64
+    ├── slack-desc.kernel-modules-template
+    ├── slack-desc.kernel-source
+    ├── slack-desc.kernel-source.vanilla
+    └── slack-desc.kernel-template
+
+2 directories, 22 files
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;去外面玩一个小时再回来，差不多已经好了。这时候我需要手动创建一个内核引导链接，其实脚本已经创建好了，我要做的就是把它复制到我的引导程序目录下。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash-4.4# &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /boot/
+bash-4.4# file vmlinuz
+vmlinuz: symbolic &lt;span class=&quot;nb&quot;&gt;link &lt;/span&gt;to vmlinuz-generic-4.14.75
+bash-4.4# &lt;span class=&quot;nb&quot;&gt;cp &lt;/span&gt;vmlinuz /boot/efi/EFI/Slackware/vmlinuz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;然后修改我的 引导配置文件 &lt;code class=&quot;highlighter-rouge&quot;&gt;elilo.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;中间因为几次修改错误不得不通过搜索引擎学习了在windows下读写 EFI 以及在 live-cd 中挂载读写 EFI分区。完成后的配置文件&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash-4.4# &lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /boot/efi/EFI/Slackware/elilo.conf
+default &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; generic
+prompt
+chooser &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; simple
+delay &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 100
+&lt;span class=&quot;nb&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;100
+
+&lt;span class=&quot;c&quot;&gt;#huge kernel&lt;/span&gt;
+image &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; vmlinuz-414-huge
+root &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /dev/sda5
+read-only
+append &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;resume=/dev/sda5&quot;&lt;/span&gt;
+label &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; huge
+description &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Slackware 64 huge 4.14.75&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#generic kernel&lt;/span&gt;
+image &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; vmlinuz
+root &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /dev/sda5
+read-only
+append &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;resume=/dev/sda5&quot;&lt;/span&gt;
+initrd &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; initrd.gz
+label &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; generic
+description &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Slackware 64 generic 4.14.75&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这时候我进入了系统 &lt;code class=&quot;highlighter-rouge&quot;&gt;CLI&lt;/code&gt; 也就是命令行模式下，我迫不及待的使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;ping&lt;/code&gt; 命令测试网络，结果让我非常的舒适。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash-4.4# ping www.baidu.com
+PING www.a.shifen.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;14.215.177.38&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 56&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;84&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; bytes of data.
+64 bytes from 14.215.177.38 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;14.215.177.38&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;nv&quot;&gt;icmp_seq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;52 &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;32.6 ms
+64 bytes from 14.215.177.38 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;14.215.177.38&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;nv&quot;&gt;icmp_seq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;2 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;52 &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;32.5 ms
+64 bytes from 14.215.177.38 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;14.215.177.38&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;nv&quot;&gt;icmp_seq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;3 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;52 &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;33.9 ms
+64 bytes from 14.215.177.38 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;14.215.177.38&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;nv&quot;&gt;icmp_seq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;52 &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;32.6 ms
+64 bytes from 14.215.177.38 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;14.215.177.38&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;nv&quot;&gt;icmp_seq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;5 &lt;span class=&quot;nv&quot;&gt;ttl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;52 &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;33.2 ms
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;我执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;startx&lt;/code&gt; 命令，准备进入图形界面，结果并不能如愿，终端抛出一堆错误返回了。&lt;/p&gt;
+
+&lt;p&gt;第一个错误大概是&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Xauth file home /usr/.serverauth.xxxx does not exist
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;查阅可知这个文件是一个检测权限的文件，将配置文件中的检测授权关掉，不再出现这个错误。&lt;/p&gt;
+
+&lt;p&gt;第二个错误大概是&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;no screen ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这个错误我找了各种解决办法，都没有奏效。最后我想到了我的显卡是 NV-1050ti 安装了官方的闭源驱动，而内核是和硬件以及驱动息息相关的，我觉得重新安装一次驱动应该会解决这个问题，果然，问题解决了。&lt;/p&gt;
+
+&lt;p&gt;##反省时间&lt;/p&gt;
+
+&lt;p&gt;​	经过这次的经历，我感觉自己的硬件知识不是很牢靠，知识过于碎片化，不过这次我没有重装系统逃避问题而是选择和问题折腾到底是一个好的转变。外网真的是有很多很全的资料，英语目前还是相当的重要。&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 17 Oct 2018 14:00:00 +0800</pubDate>
+        <link>http://localhost:4000/tutorial/2018/10/17/Save-my-pc.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorial/2018/10/17/Save-my-pc.html</guid>
+        
+        
+        <category>tutorial</category>
+        
+      </item>
     
       <item>
         <title>书写 Markdown 格式文档并转换为 Pdf 文件</title>
@@ -34,13 +184,13 @@
    
 &lt;span class=&quot;c&quot;&gt;# 添加仓库&lt;/span&gt;
    
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;add-apt-repository &lt;span class=&quot;s1&quot;&gt;&#39;deb https://typora.io/linux ./&#39;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;add-apt-repository &lt;span class=&quot;s1&quot;&gt;'deb https://typora.io/linux ./'&lt;/span&gt;
    
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update
    
 &lt;span class=&quot;c&quot;&gt;# 安装&lt;/span&gt;
    
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get install typora
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;typora
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -62,8 +212,8 @@
 &lt;p&gt;推荐一下《Pro Git》这本书，你可以&lt;a href=&quot;https://git-scm.com/book/zh/&quot;&gt;在这里免费读到这本书的简体中文版&lt;/a&gt; 哦，对，你还需要了解一下 &lt;a href=&quot;http://wowubuntu.com/markdown/basic.html&quot;&gt;MarkDown 排版的基本方法&lt;/a&gt;。另外文章正文内容还可以参考一下这份&lt;a href=&quot;https://github.com/mzlogin/chinese-copywriting-guidelines&quot;&gt;中文文案排版指北&lt;/a&gt; 。&lt;/p&gt;
 </description>
         <pubDate>Fri, 14 Sep 2018 11:12:11 +0800</pubDate>
-        <link>http://yourdomain.com/2018/09/14/md-2-pdf.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/2018/09/14/md-2-pdf.html</guid>
+        <link>http://localhost:4000/2018/09/14/md-2-pdf.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/14/md-2-pdf.html</guid>
         
         
       </item>
@@ -138,8 +288,8 @@ git push origin master
 &lt;p&gt;还有 &lt;code class=&quot;highlighter-rouge&quot;&gt;Pull request&lt;/code&gt; 请求合并等方式 敬请你的探索，这里只做简单介绍。&lt;/p&gt;
 </description>
         <pubDate>Tue, 11 Sep 2018 16:02:00 +0800</pubDate>
-        <link>http://yourdomain.com/tutorial/2018/09/11/Use-git-in-class.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/09/11/Use-git-in-class.html</guid>
+        <link>http://localhost:4000/tutorial/2018/09/11/Use-git-in-class.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorial/2018/09/11/Use-git-in-class.html</guid>
         
         
         <category>tutorial</category>
@@ -246,13 +396,13 @@ git push origin master
 
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt remove ibus
 
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install fcitx fcitx-sunpinyin fcitx-pinyin &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;fcitx fcitx-sunpinyin fcitx-pinyin &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
 
 &lt;span class=&quot;c&quot;&gt;#在设置里更改为更适合自己的设置 从右上角托盘或者活动进入设置&lt;/span&gt;
 
 &lt;span class=&quot;c&quot;&gt;#安装 C 编译器 VIM 编辑器等软件&lt;/span&gt;
 
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install vim gcc git &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;vim gcc git &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;![set](/assets/2018/09/11/set.png)
@@ -261,8 +411,8 @@ git push origin master
 &lt;p&gt;现在享受它吧。&lt;/p&gt;
 </description>
         <pubDate>Tue, 11 Sep 2018 16:02:00 +0800</pubDate>
-        <link>http://yourdomain.com/tutorial/2018/09/11/How-to-install-double-system.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/09/11/How-to-install-double-system.html</guid>
+        <link>http://localhost:4000/tutorial/2018/09/11/How-to-install-double-system.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorial/2018/09/11/How-to-install-double-system.html</guid>
         
         
         <category>tutorial</category>
@@ -292,8 +442,8 @@ ubuntu  ALL=(ALL:ALL) ALL
 &lt;p&gt;一般教程往往建议在 &lt;code&gt;root    ALL=(ALL:ALL) ALL&lt;/code&gt; 下增添或者修改为 &lt;code&gt;ubuntu  ALL=(ALL:ALL) NOPASSWD:ALL&lt;/code&gt; 但是我在实际使用中发现这样还是需要每次输入密码，而且系统下已经有 &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt; 用户组权限的设置 我将最后一行 &lt;code&gt;sudo ALL=(ALL:ALL) ALL&lt;/code&gt; 改为 &lt;code&gt;sudo ALL=(ALL:ALL) NOPASSWD:ALL&lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Sat, 26 May 2018 14:12:22 +0800</pubDate>
-        <link>http://yourdomain.com/2018/05/26/Nopawd-sudoer.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/2018/05/26/Nopawd-sudoer.html</guid>
+        <link>http://localhost:4000/2018/05/26/Nopawd-sudoer.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/26/Nopawd-sudoer.html</guid>
         
         
       </item>
@@ -324,7 +474,7 @@ ubuntu  ALL=(ALL:ALL) ALL
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ubuntu@ubuntu1:~&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;crontab &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt;
 no crontab &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;root - using an empty one
 
-Select an editor.  To change later, run &lt;span class=&quot;s1&quot;&gt;&#39;select-editor&#39;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+Select an editor.  To change later, run &lt;span class=&quot;s1&quot;&gt;'select-editor'&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
   1. /bin/nano        &amp;lt;&lt;span class=&quot;nt&quot;&gt;----&lt;/span&gt; easiest
   2. /usr/bin/vim.basic
   3. /usr/bin/vim.tiny
@@ -364,8 +514,8 @@ crontab: &lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/sensible-editor&quot;&l
 &lt;p&gt;使用 &lt;code&gt;sudo service cron start&lt;/code&gt; 启动&lt;/p&gt;
 </description>
         <pubDate>Tue, 22 May 2018 22:20:20 +0800</pubDate>
-        <link>http://yourdomain.com/2018/05/22/crontab-2-jekyll.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/2018/05/22/crontab-2-jekyll.html</guid>
+        <link>http://localhost:4000/2018/05/22/crontab-2-jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/22/crontab-2-jekyll.html</guid>
         
         
       </item>
@@ -401,8 +551,8 @@ crontab: &lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/sensible-editor&quot;&l
 &lt;p&gt;&lt;code&gt;sudo sanp install communitheme --edge &lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Tue, 22 May 2018 13:34:00 +0800</pubDate>
-        <link>http://yourdomain.com/2018/05/22/Install-dnscrypt-proxy.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/2018/05/22/Install-dnscrypt-proxy.html</guid>
+        <link>http://localhost:4000/2018/05/22/Install-dnscrypt-proxy.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/22/Install-dnscrypt-proxy.html</guid>
         
         
       </item>
@@ -434,8 +584,8 @@ bash DEbianNET.sh -d 8 -v 64
 &lt;p&gt;第一步选择 &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 21 May 2018 20:31:01 +0800</pubDate>
-        <link>http://yourdomain.com/2018/05/21/Reinstall-system.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/2018/05/21/Reinstall-system.html</guid>
+        <link>http://localhost:4000/2018/05/21/Reinstall-system.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/21/Reinstall-system.html</guid>
         
         
       </item>
@@ -476,8 +626,8 @@ bash DEbianNET.sh -d 8 -v 64
 &lt;p&gt;在一个空文件夹中执行 &lt;code&gt;jekyll new dir &lt;/code&gt; 发现自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Markdown&lt;/code&gt; 文件的前缀是日期，将自己的更改的和它一样，完美运行。&lt;/p&gt;
 </description>
         <pubDate>Mon, 21 May 2018 20:17:01 +0800</pubDate>
-        <link>http://yourdomain.com/tutorial/2018/05/21/jekyll-n-date.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/05/21/jekyll-n-date.html</guid>
+        <link>http://localhost:4000/tutorial/2018/05/21/jekyll-n-date.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorial/2018/05/21/jekyll-n-date.html</guid>
         
         
         <category>tutorial</category>
@@ -504,7 +654,7 @@ bash DEbianNET.sh -d 8 -v 64
    Your public key has been saved in /home/ubuntu/.ssh/id_rsa.pub.
    The key fingerprint is:
    SHA256:EfVw8ti8MM7HCPqQZSsdNjR8zwqZ1vMHSuJ1oNEtPlA ubuntu@ubuntu1
-   The key&#39;s randomart image is:
+   The key's randomart image is:
    +---[RSA 2048]----+
    |       .++E..    |
    |       .+o=X.    |
@@ -547,8 +697,8 @@ bash DEbianNET.sh -d 8 -v 64
 &lt;/ol&gt;
 </description>
         <pubDate>Mon, 21 May 2018 19:34:01 +0800</pubDate>
-        <link>http://yourdomain.com/tutorial/2018/05/21/Add-key-2-github.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/05/21/Add-key-2-github.html</guid>
+        <link>http://localhost:4000/tutorial/2018/05/21/Add-key-2-github.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorial/2018/05/21/Add-key-2-github.html</guid>
         
         
         <category>tutorial</category>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>记录一下我第一次遇到问题不是重装系统而是却慢慢解决的过程</title>
+  <meta name="description" content="##前情提要">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/tutorial/2018/10/17/Save-my-pc.html">
+  <link rel="alternate" type="application/rss+xml" title="shiptux's blog" href="http://localhost:4000/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">shiptux's blog</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">关于</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">记录一下我第一次遇到问题不是重装系统而是却慢慢解决的过程</h1>
+    <p class="post-meta"><time datetime="2018-10-17T14:00:00+08:00" itemprop="datePublished">Oct 17, 2018</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">licheng</span></span></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>##前情提要</p>
+
+<p>​	上个月的时候，我兴奋的安装了 <code class="highlighter-rouge">Slackware</code> 。并且兴奋的打算将它更新到 “–current” –Slackware滚动更新版，更多更新的软件，更棒的体验以及更多的 <code class="highlighter-rouge">bug</code>，想想多么的酷炫啊。然后我十分不谨慎的更新了（未查询任何文档手册，未作任何备份，直接敲了命令），只见 <code class="highlighter-rouge">CLI</code> 下如水一般的提示符，过了两个小时就好啦，兴奋的进 <code class="highlighter-rouge">X</code> 我的鼠标怎么用不了，重启试试，我的键盘怎么用不了，顿时就懵了。想到我曾经加在书签里的 <code class="highlighter-rouge">Github</code> 上的 <code class="highlighter-rouge">Slackware</code> 中文社区，赶紧去找找大神啊。</p>
+
+<p>​	<a href="https://github.com/slackwarecn">Slackware中文社区</a></p>
+
+<p>​	<img src="/assets/2018/10/17/slackwarecn.png" alt="slackwarecn" /></p>
+
+<p>​	一共五位成员，三位留下了邮箱我发送了邮件，有两位回复给了我一些建议。一些意见使我反省了一下自己，比如我事先没有备份，没有将内核加入更新的黑名单，最重要的是没有查阅 <a href="docs.slackware.com">文档</a> （这是一个很棒的项目，并且可以在中国境内直接访问，有机会希望我能帮助翻译一部分。)</p>
+
+<p>##今回</p>
+
+<p>​	后来我又重新安装了 <code class="highlighter-rouge">Slackware-14.2</code> 并且顺利地更新到了 “–current”,参考文档更新了软件，有一天我突然发现我不能上网了，一直都是在连接，但是连不上。我尝试更改了 /etc/resolv.conf /etc/host.conf 以及其他网络配置相关文件。没有任何效果，我重新进行了一遍系统自带的网络配置过程也没有用。最终束手无策之下我想会不会是驱动出了问题，在谷歌帮助之下我执行命令查看我的网卡硬件版本。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lspci <span class="nt">-knn</span>
+</code></pre></div></div>
+
+<p>显示的内容是  <code class="highlighter-rouge">RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 0c)</code></p>
+
+<p>再查看驱动版本</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lshw <span class="nt">-C</span> network
+</code></pre></div></div>
+
+<p>输出的驱动 <code class="highlighter-rouge">drive=driver=r8169</code></p>
+
+<p>问题很明显了，现在就是驱动出了问题，这个问题不用自己来手动解决，互联网上早已有大神做好了脚本 <a href="https://github.com/mtorromeo/r8168">脚本地址</a></p>
+
+<p><img src="/assets/2018/10/17/Script.png" alt="Script" /></p>
+
+<p>事情从来不是一番风顺的嘛，果然安装中出现了错误</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ERROR: could not insert <span class="s1">'r8168'</span>: Exec format error
+</code></pre></div></div>
+
+<p>这个问题有点坑，谷歌了几圈之后发现了一个哥们跟我遇到一样的问题过，他更新内核到4.7以上解决了这个问题。</p>
+
+<p>那么我现在遇到的问题就是更新内核，其他发行版的更新往往是执行一条命令的事情，但是我的 Slackware 没有这样的功能，加上我是个小白，于是我去查找了文档，发现文档中有个文档提到了这个 <a href="https://docs.slackware.com/howtos:slackware_admin:kernelbuilding">从源代码安装内核</a> 。但我觉得肯定有更简单的，果不其然我在官方镜像中找到了内核构建脚本，下载了所有文件之后，按照原路径放好，执行文件，脚本自动编译自动安装。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash-4.4# tree kernel-build/
+kernel-build/
+├── build-all-kernels.sh
+├── build-kernel-from-git.pdf
+├── build-kernel-from-source.pdf
+├── kernel-configs
+│   ├── config-generic-4.14.75
+│   ├── config-generic-4.14.75.x64
+│   ├── config-generic-smp-4.14.75-smp
+│   ├── config-huge-4.14.75
+│   ├── config-huge-4.14.75.x64
+│   └── config-huge-smp-4.14.75-smp
+├── kernel-generic.SlackBuild
+├── kernel-headers.SlackBuild
+├── kernel-modules.SlackBuild
+├── kernel-source.SlackBuild
+├── linux-4.14.75.tar.sign
+├── linux-4.14.75.tar.xz
+└── slack-desc
+    ├── slack-desc.kernel-generic.x86_64
+    ├── slack-desc.kernel-headers
+    ├── slack-desc.kernel-huge.x86_64
+    ├── slack-desc.kernel-modules-template
+    ├── slack-desc.kernel-source
+    ├── slack-desc.kernel-source.vanilla
+    └── slack-desc.kernel-template
+
+2 directories, 22 files
+
+</code></pre></div></div>
+
+<p>去外面玩一个小时再回来，差不多已经好了。这时候我需要手动创建一个内核引导链接，其实脚本已经创建好了，我要做的就是把它复制到我的引导程序目录下。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash-4.4# <span class="nb">cd</span> /boot/
+bash-4.4# file vmlinuz
+vmlinuz: symbolic <span class="nb">link </span>to vmlinuz-generic-4.14.75
+bash-4.4# <span class="nb">cp </span>vmlinuz /boot/efi/EFI/Slackware/vmlinuz
+</code></pre></div></div>
+
+<p>然后修改我的 引导配置文件 <code class="highlighter-rouge">elilo.conf</code></p>
+
+<p>中间因为几次修改错误不得不通过搜索引擎学习了在windows下读写 EFI 以及在 live-cd 中挂载读写 EFI分区。完成后的配置文件</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash-4.4# <span class="nb">cat</span> /boot/efi/EFI/Slackware/elilo.conf
+default <span class="o">=</span> generic
+prompt
+chooser <span class="o">=</span> simple
+delay <span class="o">=</span> 100
+<span class="nb">timeout</span> <span class="o">=</span>100
+
+<span class="c">#huge kernel</span>
+image <span class="o">=</span> vmlinuz-414-huge
+root <span class="o">=</span> /dev/sda5
+read-only
+append <span class="o">=</span> <span class="s2">"resume=/dev/sda5"</span>
+label <span class="o">=</span> huge
+description <span class="o">=</span> <span class="s2">"Slackware 64 huge 4.14.75"</span>
+
+<span class="c">#generic kernel</span>
+image <span class="o">=</span> vmlinuz
+root <span class="o">=</span> /dev/sda5
+read-only
+append <span class="o">=</span> <span class="s2">"resume=/dev/sda5"</span>
+initrd <span class="o">=</span> initrd.gz
+label <span class="o">=</span> generic
+description <span class="o">=</span> <span class="s2">"Slackware 64 generic 4.14.75"</span>
+</code></pre></div></div>
+
+<p>这时候我进入了系统 <code class="highlighter-rouge">CLI</code> 也就是命令行模式下，我迫不及待的使用 <code class="highlighter-rouge">ping</code> 命令测试网络，结果让我非常的舒适。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash-4.4# ping www.baidu.com
+PING www.a.shifen.com <span class="o">(</span>14.215.177.38<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+64 bytes from 14.215.177.38 <span class="o">(</span>14.215.177.38<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>52 <span class="nb">time</span><span class="o">=</span>32.6 ms
+64 bytes from 14.215.177.38 <span class="o">(</span>14.215.177.38<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span>2 <span class="nv">ttl</span><span class="o">=</span>52 <span class="nb">time</span><span class="o">=</span>32.5 ms
+64 bytes from 14.215.177.38 <span class="o">(</span>14.215.177.38<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span>3 <span class="nv">ttl</span><span class="o">=</span>52 <span class="nb">time</span><span class="o">=</span>33.9 ms
+64 bytes from 14.215.177.38 <span class="o">(</span>14.215.177.38<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span>4 <span class="nv">ttl</span><span class="o">=</span>52 <span class="nb">time</span><span class="o">=</span>32.6 ms
+64 bytes from 14.215.177.38 <span class="o">(</span>14.215.177.38<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span>5 <span class="nv">ttl</span><span class="o">=</span>52 <span class="nb">time</span><span class="o">=</span>33.2 ms
+</code></pre></div></div>
+
+<p>我执行 <code class="highlighter-rouge">startx</code> 命令，准备进入图形界面，结果并不能如愿，终端抛出一堆错误返回了。</p>
+
+<p>第一个错误大概是</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Xauth file home /usr/.serverauth.xxxx does not exist
+</code></pre></div></div>
+
+<p>查阅可知这个文件是一个检测权限的文件，将配置文件中的检测授权关掉，不再出现这个错误。</p>
+
+<p>第二个错误大概是</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>no screen ...
+</code></pre></div></div>
+
+<p>这个错误我找了各种解决办法，都没有奏效。最后我想到了我的显卡是 NV-1050ti 安装了官方的闭源驱动，而内核是和硬件以及驱动息息相关的，我觉得重新安装一次驱动应该会解决这个问题，果然，问题解决了。</p>
+
+<p>##反省时间</p>
+
+<p>​	经过这次的经历，我感觉自己的硬件知识不是很牢靠，知识过于碎片化，不过这次我没有重装系统逃避问题而是选择和问题折腾到底是一个好的转变。外网真的是有很多很全的资料，英语目前还是相当的重要。</p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">shiptux's blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>shiptux's blog</li>
+          <li><a href="mailto:lithiumhydrogen@outlook.com">lithiumhydrogen@outlook.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/shiptux"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">shiptux</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
