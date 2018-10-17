@@ -4,11 +4,57 @@
     <title>shiptux's blog</title>
     <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 18 Oct 2018 03:08:24 +0800</pubDate>
-    <lastBuildDate>Thu, 18 Oct 2018 03:08:24 +0800</lastBuildDate>
+    <link>http://yourdomain.com/</link>
+    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 18 Oct 2018 03:26:11 +0800</pubDate>
+    <lastBuildDate>Thu, 18 Oct 2018 03:26:11 +0800</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
+    
+      <item>
+        <title>记录一下在live系统和windows下读写efi分区的方法</title>
+        <description>&lt;p&gt;##在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Windows&lt;/code&gt; 下读写 &lt;code class=&quot;highlighter-rouge&quot;&gt;EFI&lt;/code&gt;  分区&lt;/p&gt;
+
+&lt;p&gt;以&lt;/p&gt;
+
+&lt;p&gt;管理员权限&lt;/p&gt;
+
+&lt;p&gt;运行CMD&lt;/p&gt;
+
+&lt;p&gt;然后输入：&lt;/p&gt;
+
+&lt;p&gt;diskpart&lt;/p&gt;
+
+&lt;p&gt;，启动diskpart工具，在diskpart的提示符下依次输入&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;list disk————————-列出系统中拥有的磁盘&lt;/li&gt;
+  &lt;li&gt;select disk 0——————–选择EFI引导分区所在的磁盘，请根据实际情况选择&lt;/li&gt;
+  &lt;li&gt;list partition——————–列出所选磁盘拥有的分区&lt;/li&gt;
+  &lt;li&gt;select partition 1—————选择EFI引导分区，类型为系统的分区，就是EFI引导分区&lt;/li&gt;
+  &lt;li&gt;assign letter=p—————–为所选分区分配盘符，请分配空闲盘符&lt;/li&gt;
+  &lt;li&gt;remove letter=p—————-修改完成后，移除盘符（如果不移除，重启计算机以后，会自动移除）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这样暂时还不能读取 需要安装 Total Commander 软件&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://bbs.pcbeta.com/viewthread-1517702-1-1.html&quot;&gt;原文链接&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;##live-system&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fdisk &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+mount /dev/efi所在地 /你想挂的地方
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /挂的地方
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 17 Oct 2018 19:20:18 +0800</pubDate>
+        <link>http://yourdomain.com/tutorial/2018/10/17/r-n-w-efi.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/10/17/r-n-w-efi.html</guid>
+        
+        
+        <category>tutorial</category>
+        
+      </item>
     
       <item>
         <title>记录一下我第一次遇到问题不是重装系统而是却慢慢解决的过程</title>
@@ -152,8 +198,8 @@ PING www.a.shifen.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;14.215.177.3
 
 </description>
         <pubDate>Wed, 17 Oct 2018 14:00:00 +0800</pubDate>
-        <link>http://localhost:4000/tutorial/2018/10/17/Save-my-pc.html</link>
-        <guid isPermaLink="true">http://localhost:4000/tutorial/2018/10/17/Save-my-pc.html</guid>
+        <link>http://yourdomain.com/tutorial/2018/10/17/Save-my-pc.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/10/17/Save-my-pc.html</guid>
         
         
         <category>tutorial</category>
@@ -212,8 +258,8 @@ PING www.a.shifen.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;14.215.177.3
 &lt;p&gt;推荐一下《Pro Git》这本书，你可以&lt;a href=&quot;https://git-scm.com/book/zh/&quot;&gt;在这里免费读到这本书的简体中文版&lt;/a&gt; 哦，对，你还需要了解一下 &lt;a href=&quot;http://wowubuntu.com/markdown/basic.html&quot;&gt;MarkDown 排版的基本方法&lt;/a&gt;。另外文章正文内容还可以参考一下这份&lt;a href=&quot;https://github.com/mzlogin/chinese-copywriting-guidelines&quot;&gt;中文文案排版指北&lt;/a&gt; 。&lt;/p&gt;
 </description>
         <pubDate>Fri, 14 Sep 2018 11:12:11 +0800</pubDate>
-        <link>http://localhost:4000/2018/09/14/md-2-pdf.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/14/md-2-pdf.html</guid>
+        <link>http://yourdomain.com/2018/09/14/md-2-pdf.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2018/09/14/md-2-pdf.html</guid>
         
         
       </item>
@@ -288,8 +334,8 @@ git push origin master
 &lt;p&gt;还有 &lt;code class=&quot;highlighter-rouge&quot;&gt;Pull request&lt;/code&gt; 请求合并等方式 敬请你的探索，这里只做简单介绍。&lt;/p&gt;
 </description>
         <pubDate>Tue, 11 Sep 2018 16:02:00 +0800</pubDate>
-        <link>http://localhost:4000/tutorial/2018/09/11/Use-git-in-class.html</link>
-        <guid isPermaLink="true">http://localhost:4000/tutorial/2018/09/11/Use-git-in-class.html</guid>
+        <link>http://yourdomain.com/tutorial/2018/09/11/Use-git-in-class.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/09/11/Use-git-in-class.html</guid>
         
         
         <category>tutorial</category>
@@ -411,8 +457,8 @@ git push origin master
 &lt;p&gt;现在享受它吧。&lt;/p&gt;
 </description>
         <pubDate>Tue, 11 Sep 2018 16:02:00 +0800</pubDate>
-        <link>http://localhost:4000/tutorial/2018/09/11/How-to-install-double-system.html</link>
-        <guid isPermaLink="true">http://localhost:4000/tutorial/2018/09/11/How-to-install-double-system.html</guid>
+        <link>http://yourdomain.com/tutorial/2018/09/11/How-to-install-double-system.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/09/11/How-to-install-double-system.html</guid>
         
         
         <category>tutorial</category>
@@ -442,8 +488,8 @@ ubuntu  ALL=(ALL:ALL) ALL
 &lt;p&gt;一般教程往往建议在 &lt;code&gt;root    ALL=(ALL:ALL) ALL&lt;/code&gt; 下增添或者修改为 &lt;code&gt;ubuntu  ALL=(ALL:ALL) NOPASSWD:ALL&lt;/code&gt; 但是我在实际使用中发现这样还是需要每次输入密码，而且系统下已经有 &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt; 用户组权限的设置 我将最后一行 &lt;code&gt;sudo ALL=(ALL:ALL) ALL&lt;/code&gt; 改为 &lt;code&gt;sudo ALL=(ALL:ALL) NOPASSWD:ALL&lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Sat, 26 May 2018 14:12:22 +0800</pubDate>
-        <link>http://localhost:4000/2018/05/26/Nopawd-sudoer.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/26/Nopawd-sudoer.html</guid>
+        <link>http://yourdomain.com/2018/05/26/Nopawd-sudoer.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2018/05/26/Nopawd-sudoer.html</guid>
         
         
       </item>
@@ -514,8 +560,8 @@ crontab: &lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/sensible-editor&quot;&l
 &lt;p&gt;使用 &lt;code&gt;sudo service cron start&lt;/code&gt; 启动&lt;/p&gt;
 </description>
         <pubDate>Tue, 22 May 2018 22:20:20 +0800</pubDate>
-        <link>http://localhost:4000/2018/05/22/crontab-2-jekyll.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/22/crontab-2-jekyll.html</guid>
+        <link>http://yourdomain.com/2018/05/22/crontab-2-jekyll.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2018/05/22/crontab-2-jekyll.html</guid>
         
         
       </item>
@@ -551,8 +597,8 @@ crontab: &lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/sensible-editor&quot;&l
 &lt;p&gt;&lt;code&gt;sudo sanp install communitheme --edge &lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Tue, 22 May 2018 13:34:00 +0800</pubDate>
-        <link>http://localhost:4000/2018/05/22/Install-dnscrypt-proxy.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/22/Install-dnscrypt-proxy.html</guid>
+        <link>http://yourdomain.com/2018/05/22/Install-dnscrypt-proxy.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2018/05/22/Install-dnscrypt-proxy.html</guid>
         
         
       </item>
@@ -584,8 +630,8 @@ bash DEbianNET.sh -d 8 -v 64
 &lt;p&gt;第一步选择 &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 21 May 2018 20:31:01 +0800</pubDate>
-        <link>http://localhost:4000/2018/05/21/Reinstall-system.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/21/Reinstall-system.html</guid>
+        <link>http://yourdomain.com/2018/05/21/Reinstall-system.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2018/05/21/Reinstall-system.html</guid>
         
         
       </item>
@@ -626,79 +672,8 @@ bash DEbianNET.sh -d 8 -v 64
 &lt;p&gt;在一个空文件夹中执行 &lt;code&gt;jekyll new dir &lt;/code&gt; 发现自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Markdown&lt;/code&gt; 文件的前缀是日期，将自己的更改的和它一样，完美运行。&lt;/p&gt;
 </description>
         <pubDate>Mon, 21 May 2018 20:17:01 +0800</pubDate>
-        <link>http://localhost:4000/tutorial/2018/05/21/jekyll-n-date.html</link>
-        <guid isPermaLink="true">http://localhost:4000/tutorial/2018/05/21/jekyll-n-date.html</guid>
-        
-        
-        <category>tutorial</category>
-        
-      </item>
-    
-      <item>
-        <title>如何向 Github 添加 SSH KEY</title>
-        <description>&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;如果你的电脑还没有安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;SSH&lt;/code&gt; , 先使用包管理器安装&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;生成 &lt;code class=&quot;highlighter-rouge&quot;&gt;SSH&lt;/code&gt; 密钥对&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   ubuntu@ubuntu1:~$ ssh-keygen
-   Generating public/private rsa key pair.
-   Enter file in which to save the key (/home/ubuntu/.ssh/id_rsa): 
-   Enter passphrase (empty for no passphrase): 
-   Enter same passphrase again: 
-   Your identification has been saved in /home/ubuntu/.ssh/id_rsa.
-   Your public key has been saved in /home/ubuntu/.ssh/id_rsa.pub.
-   The key fingerprint is:
-   SHA256:EfVw8ti8MM7HCPqQZSsdNjR8zwqZ1vMHSuJ1oNEtPlA ubuntu@ubuntu1
-   The key's randomart image is:
-   +---[RSA 2048]----+
-   |       .++E..    |
-   |       .+o=X.    |
-   |        OX+==    |
-   |       BBOB==.   |
-   |      =oS=+B+.   |
-   |       +. o.. .  |
-   |        .    .   |
-   |                 |
-   |                 |
-   +----[SHA256]-----+
-   ​```
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;查看公钥内容&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   ubuntu@ubuntu1:~$ cat .ssh/id_rsa.pub 
-   ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCv/t7Qj0BbnwCGn2PQg1qYNYxEO2UQyN/2aD8ujr0y0vHHF/0RXp2d4gnZkNTUOZfhnrhTVceT7hi7a+JBXWq7Ceatpy5JW30wmpw2RDtR5yIEDiOLoIFXVtPRSo4BpmDCQGvGw4ihRRuUvltq3LinaWqAPtTStq2xiPyC/ZRNMdHRB9zFMnoDDsZzaQNKvXumpnAmK9KzdFsEdmUpQ3oOMwXAMgMkUVZYscf9LbLCfoDDJK4ThYPb6lSMrFlmXonKJtwdccw2/gMVqWaK1c3fsoOr1nTEjq4tuCOwXNFXEg4fUJrx5ws3zbr0OJ4DCrZSoBNAy9v9WfT+vAA4EZ2V ubuntu@ubuntu1
-   ​```
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;复制内容到 &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt;&lt;/p&gt;
-
-    &lt;p&gt;点击右上角自己的头像后&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/2018/05/21/hp.png&quot; alt=&quot;hp&quot; /&gt;&lt;/p&gt;
-
-    &lt;p&gt;点击设置选择 &lt;code class=&quot;highlighter-rouge&quot;&gt;SSH and GPG keys&lt;/code&gt;&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/2018/05/21/ssh.png&quot; alt=&quot;ssh&quot; /&gt;&lt;/p&gt;
-
-    &lt;p&gt;点击 &lt;code class=&quot;highlighter-rouge&quot;&gt;New SSH key&lt;/code&gt; 并复制文件内容至此&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/2018/05/21/newkey.png&quot; alt=&quot;newkey&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        <pubDate>Mon, 21 May 2018 19:34:01 +0800</pubDate>
-        <link>http://localhost:4000/tutorial/2018/05/21/Add-key-2-github.html</link>
-        <guid isPermaLink="true">http://localhost:4000/tutorial/2018/05/21/Add-key-2-github.html</guid>
+        <link>http://yourdomain.com/tutorial/2018/05/21/jekyll-n-date.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/05/21/jekyll-n-date.html</guid>
         
         
         <category>tutorial</category>
