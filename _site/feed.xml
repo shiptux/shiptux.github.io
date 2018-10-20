@@ -6,8 +6,8 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 18 Oct 2018 03:26:11 +0800</pubDate>
-    <lastBuildDate>Thu, 18 Oct 2018 03:26:11 +0800</lastBuildDate>
+    <pubDate>Sat, 20 Oct 2018 21:53:58 +0800</pubDate>
+    <lastBuildDate>Sat, 20 Oct 2018 21:53:58 +0800</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -57,20 +57,20 @@ mount /dev/efi所在地 /你想挂的地方
       </item>
     
       <item>
-        <title>记录一下我第一次遇到问题不是重装系统而是却慢慢解决的过程</title>
+        <title>记录一下一次主动解决问题的经历</title>
         <description>&lt;p&gt;##前情提要&lt;/p&gt;
 
-&lt;p&gt;​	上个月的时候，我兴奋的安装了 &lt;code class=&quot;highlighter-rouge&quot;&gt;Slackware&lt;/code&gt; 。并且兴奋的打算将它更新到 “–current” –Slackware滚动更新版，更多更新的软件，更棒的体验以及更多的 &lt;code class=&quot;highlighter-rouge&quot;&gt;bug&lt;/code&gt;，想想多么的酷炫啊。然后我十分不谨慎的更新了（未查询任何文档手册，未作任何备份，直接敲了命令），只见 &lt;code class=&quot;highlighter-rouge&quot;&gt;CLI&lt;/code&gt; 下如水一般的提示符，过了两个小时就好啦，兴奋的进 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 我的鼠标怎么用不了，重启试试，我的键盘怎么用不了，顿时就懵了。想到我曾经加在书签里的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt; 上的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Slackware&lt;/code&gt; 中文社区，赶紧去找找大神啊。&lt;/p&gt;
+&lt;p&gt;​	在上个月的时候，我兴奋的安装了 &lt;code class=&quot;highlighter-rouge&quot;&gt;Slackware&lt;/code&gt; 。我早有体验 “–current” –Slackware滚动更新版的想法，它意味着更多更新的软件，更棒的体验以及更多的 &lt;code class=&quot;highlighter-rouge&quot;&gt;bug&lt;/code&gt;，想想多么的酷炫啊。我在十分不谨慎的情况下更新了系统（未查询任何文档手册，未作任何备份，直接执行了了命更新操作）。只见 &lt;code class=&quot;highlighter-rouge&quot;&gt;CLI&lt;/code&gt; 下如水一般的提示符，却不知前方高能。更新结束后，兴奋的进入 &lt;code class=&quot;highlighter-rouge&quot;&gt;X&lt;/code&gt; 的发现我的鼠标键盘怎么也用不了，重启大法也不能拯救我，顿时就懵了。想到我曾经加在书签里的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Github&lt;/code&gt; 上的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Slackware&lt;/code&gt; 中文社区，赶紧去找找大神啊。&lt;/p&gt;
 
 &lt;p&gt;​	&lt;a href=&quot;https://github.com/slackwarecn&quot;&gt;Slackware中文社区&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;​	&lt;img src=&quot;/assets/2018/10/17/slackwarecn.png&quot; alt=&quot;slackwarecn&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;​	一共五位成员，三位留下了邮箱我发送了邮件，有两位回复给了我一些建议。一些意见使我反省了一下自己，比如我事先没有备份，没有将内核加入更新的黑名单，最重要的是没有查阅 &lt;a href=&quot;docs.slackware.com&quot;&gt;文档&lt;/a&gt; （这是一个很棒的项目，并且可以在中国境内直接访问，有机会希望我能帮助翻译一部分。)&lt;/p&gt;
+&lt;p&gt;​	社区有共五位成员，三位留下了邮箱。我给留下邮箱的发送了邮件，有两位回复并且给了我一些建议。一些意见使我反省，比如我事先没有备份，没有将内核加入更新的黑名单，最重要的是没有查阅 &lt;a href=&quot;docs.slackware.com&quot;&gt;文档&lt;/a&gt; （这是一个很棒的项目，并且可以在中国境内直接访问，有机会希望我能帮助翻译一部分。)&lt;/p&gt;
 
 &lt;p&gt;##今回&lt;/p&gt;
 
-&lt;p&gt;​	后来我又重新安装了 &lt;code class=&quot;highlighter-rouge&quot;&gt;Slackware-14.2&lt;/code&gt; 并且顺利地更新到了 “–current”,参考文档更新了软件，有一天我突然发现我不能上网了，一直都是在连接，但是连不上。我尝试更改了 /etc/resolv.conf /etc/host.conf 以及其他网络配置相关文件。没有任何效果，我重新进行了一遍系统自带的网络配置过程也没有用。最终束手无策之下我想会不会是驱动出了问题，在谷歌帮助之下我执行命令查看我的网卡硬件版本。&lt;/p&gt;
+&lt;p&gt;​	后来我又重新安装了 &lt;code class=&quot;highlighter-rouge&quot;&gt;Slackware-14.2&lt;/code&gt; 并且顺利地更新到了 “–current”，然后参考文档更新了软件。之后我突然发现我不能上网了，网络一直都是在连接，但是永远都连不上。我尝试更改了 &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/resolv.conf&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/host.conf&lt;/code&gt; 以及其他网络配置相关文件。但是没有任何效果，我重新运行了一遍系统自带的网络配置脚本也没有用。最终束手无策之下我想到可能是驱动出了问题，在谷歌帮助之下我执行命令查看我的网卡硬件版本。&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lspci &lt;span class=&quot;nt&quot;&gt;-knn&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -84,18 +84,18 @@ mount /dev/efi所在地 /你想挂的地方
 
 &lt;p&gt;输出的驱动 &lt;code class=&quot;highlighter-rouge&quot;&gt;drive=driver=r8169&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;问题很明显了，现在就是驱动出了问题，这个问题不用自己来手动解决，互联网上早已有大神做好了脚本 &lt;a href=&quot;https://github.com/mtorromeo/r8168&quot;&gt;脚本地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;问题很明显了，现在就是驱动出了问题，驱动的版本对不上。这个问题不用自己来手动解决，互联网上早已有大神做好了脚本 &lt;a href=&quot;https://github.com/mtorromeo/r8168&quot;&gt;脚本地址&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/2018/10/17/Script.png&quot; alt=&quot;Script&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;事情从来不是一番风顺的嘛，果然安装中出现了错误&lt;/p&gt;
+&lt;p&gt;事情并非一番风顺，安装中出现了错误。&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ERROR: could not insert &lt;span class=&quot;s1&quot;&gt;'r8168'&lt;/span&gt;: Exec format error
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;这个问题有点坑，谷歌了几圈之后发现了一个哥们跟我遇到一样的问题过，他更新内核到4.7以上解决了这个问题。&lt;/p&gt;
 
-&lt;p&gt;那么我现在遇到的问题就是更新内核，其他发行版的更新往往是执行一条命令的事情，但是我的 Slackware 没有这样的功能，加上我是个小白，于是我去查找了文档，发现文档中有个文档提到了这个 &lt;a href=&quot;https://docs.slackware.com/howtos:slackware_admin:kernelbuilding&quot;&gt;从源代码安装内核&lt;/a&gt; 。但我觉得肯定有更简单的，果不其然我在官方镜像中找到了内核构建脚本，下载了所有文件之后，按照原路径放好，执行文件，脚本自动编译自动安装。&lt;/p&gt;
+&lt;p&gt;那么我更新内核很大可能可以解决这个问题。其他发行版的更新内核往往是执行一条命令的事情，但是&lt;code class=&quot;highlighter-rouge&quot;&gt;Slackware&lt;/code&gt; 比较硬核，加上我是个喜欢硬核的小白，所以对我来说难度稍大。我查找了文档，文档中有个提到了这个 &lt;a href=&quot;https://docs.slackware.com/howtos:slackware_admin:kernelbuilding&quot;&gt;从源代码安装内核&lt;/a&gt; 。但我觉得肯定有更简单的，果不其然我在官方镜像中找到了内核构建脚本，下载了所有文件，按照原路径放好，执行安装脚本，脚本自动编译自动安装。&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash-4.4# tree kernel-build/
 kernel-build/
@@ -128,7 +128,11 @@ kernel-build/
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;去外面玩一个小时再回来，差不多已经好了。这时候我需要手动创建一个内核引导链接，其实脚本已经创建好了，我要做的就是把它复制到我的引导程序目录下。&lt;/p&gt;
+&lt;p&gt;编译的时间可以去做点其他事情。&lt;/p&gt;
+
+&lt;p&gt;一个小时后。&lt;/p&gt;
+
+&lt;p&gt;这时候我需要手动创建一个内核引导链接，其实脚本已经创建好了，我要做的就是把它复制到我的引导程序目录下。&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash-4.4# &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /boot/
 bash-4.4# file vmlinuz
@@ -190,7 +194,7 @@ PING www.a.shifen.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;14.215.177.3
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;no screen ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;这个错误我找了各种解决办法，都没有奏效。最后我想到了我的显卡是 NV-1050ti 安装了官方的闭源驱动，而内核是和硬件以及驱动息息相关的，我觉得重新安装一次驱动应该会解决这个问题，果然，问题解决了。&lt;/p&gt;
+&lt;p&gt;这个错误我找了各种解决办法，都没有奏效。最后我想到了我的显卡是 NV-1050ti 并且安装了官方的闭源驱动，而内核是和硬件以及驱动息息相关的。我觉得重新安装一次驱动应该会解决这个问题，果然，问题解决了。&lt;/p&gt;
 
 &lt;p&gt;##反省时间&lt;/p&gt;
 
