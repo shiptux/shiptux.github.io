@@ -6,9 +6,103 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 20 Oct 2018 21:53:58 +0800</pubDate>
-    <lastBuildDate>Sat, 20 Oct 2018 21:53:58 +0800</lastBuildDate>
-    <generator>Jekyll v3.8.4</generator>
+    <pubDate>Wed, 27 Mar 2019 22:30:14 +0800</pubDate>
+    <lastBuildDate>Wed, 27 Mar 2019 22:30:14 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>智慧农业监测系统的云服务器完整部署过程</title>
+        <description>&lt;h1 id=&quot;这篇文章描述智慧农业监测系统的云服务器完整部署过程&quot;&gt;这篇文章描述智慧农业监测系统的云服务器完整部署过程&lt;/h1&gt;
+
+&lt;h2 id=&quot;树莓派&quot;&gt;树莓派&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;连接到树莓派&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;ssh pi@192.168.43.xx&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;如果忘记地址 可以在 &lt;code class=&quot;highlighter-rouge&quot;&gt;known_hosts&lt;/code&gt; 里面查看&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;cat ~/.ssh/known_host&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看树莓派上的代码&lt;/p&gt;
+
+    &lt;p&gt;使用命令行编辑查看代码&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;nano scpmydht11.c&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;使用命令行编译下位机代码&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;gcc scpmydht11.c -o samsclient -l wringPi&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;运行树莓派上的代码&lt;/p&gt;
+
+    &lt;p&gt;确保服务器上的程序先启动  &lt;em&gt;Tips:在Linux下Ctrl+c可以停止程序&lt;/em&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;./samsclient&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;服务器&quot;&gt;服务器&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;连接到服务器&lt;/p&gt;
+
+    &lt;p&gt;在桌面上右键选择 &lt;code class=&quot;highlighter-rouge&quot;&gt;git bash here&lt;/code&gt; 在弹出的 &lt;code class=&quot;highlighter-rouge&quot;&gt;git bash&lt;/code&gt; 命令行中&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;ssh liujinxiu@shiptux.cn&lt;/code&gt; 并输入密码 &lt;em&gt;Tips:Linux 带有密码位数保护 所以**不会显示&lt;/em&gt;&lt;/p&gt;
+
+    &lt;p&gt;在成功连接服务器之后 左边的用户@host会发生变化。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;编译服务器代码&lt;/p&gt;
+
+    &lt;p&gt;成功连接后可以在用户的目录下找到服务器的代码和执行文件. &lt;strong&gt;切记运行先服务程序再运行客户端程序，关闭的顺序同样。可以使用 Ctrl+c关闭&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;## 列出当前目录下所有文件&lt;/span&gt;
+     server.c server
+     gcc server.c &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; server /usr/lib64/mysql/libmysqlclient.so.18 &lt;span class=&quot;c&quot;&gt;##编译命令 gcc 调用编译器 server.c 是源代码文件 -o 自动链接 server 是生成的执行文件名 /usr/lib64....等是这个代码的头文件中需要的动态链接库&lt;/span&gt;
+     &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt; ./server &lt;span class=&quot;c&quot;&gt;##使用 root 即超级用户权限执行该文件 &lt;/span&gt;
+     同样可以使用 Ctrl + c关闭程序   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;代码文件的查看&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Vim&lt;/code&gt; 版本&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt; vim server.c&lt;/code&gt; &lt;em&gt;Tips:注意后缀不要少了，否则会变成用编辑器打开二进制文件，那会是一团乱码&lt;/em&gt;&lt;/p&gt;
+
+    &lt;p&gt;使用方向键浏览 几个常用的命令 按 &lt;code class=&quot;highlighter-rouge&quot;&gt;i&lt;/code&gt; 键进入插入模式 &lt;code class=&quot;highlighter-rouge&quot;&gt;esc&lt;/code&gt; 键退出该模式 &lt;code class=&quot;highlighter-rouge&quot;&gt;:w&lt;/code&gt;写入 具体是确保不在编辑模式 然后先按 “:” 冒号 再输入 “w” 同样 &lt;code class=&quot;highlighter-rouge&quot;&gt;:wq&lt;/code&gt; 是写入并退出 &lt;code class=&quot;highlighter-rouge&quot;&gt;:q&lt;/code&gt;是推出 如过加上 !那就是强制执行&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Nano&lt;/code&gt; 版本&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Nano&lt;/code&gt; 版本要比 &lt;code class=&quot;highlighter-rouge&quot;&gt;Vim&lt;/code&gt; 简单许多&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;nano server.c&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;同样是方向键浏览，常用命令已经写在了底部。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Web 程序 &lt;code class=&quot;highlighter-rouge&quot;&gt;Tomcat&lt;/code&gt; 的启动和重启&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;sudo /opt/tomcat/bin/startup.sh&lt;/code&gt;  启动&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;sudo /opt/tomcat/bin/shutdown.sh&lt;/code&gt; 关闭&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Wed, 27 Mar 2019 10:49:00 +0800</pubDate>
+        <link>http://yourdomain.com/2019/03/27/Deploy-Server.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2019/03/27/Deploy-Server.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>记录一下在live系统和windows下读写efi分区的方法</title>
@@ -637,50 +731,6 @@ bash DEbianNET.sh -d 8 -v 64
         <link>http://yourdomain.com/2018/05/21/Reinstall-system.html</link>
         <guid isPermaLink="true">http://yourdomain.com/2018/05/21/Reinstall-system.html</guid>
         
-        
-      </item>
-    
-      <item>
-        <title>jekyll对日期的敏感</title>
-        <description>&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;就在我写完上篇文章上传后却没有文章内容&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;重新生成&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;code&gt;jekyll build &lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;jekyll server &lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;结果没有奏效&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;更改 &lt;code class=&quot;highlighter-rouge&quot;&gt;layout&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;重复步骤一没有改变结果&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;更改日期&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;在网络上查找资料后看到一种说法，文章的时间如果是“未来”的话 &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll&lt;/code&gt; 不会渲染，更改时间，也没有奏效。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;找基本模板&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;在一个空文件夹中执行 &lt;code&gt;jekyll new dir &lt;/code&gt; 发现自带的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Markdown&lt;/code&gt; 文件的前缀是日期，将自己的更改的和它一样，完美运行。&lt;/p&gt;
-</description>
-        <pubDate>Mon, 21 May 2018 20:17:01 +0800</pubDate>
-        <link>http://yourdomain.com/tutorial/2018/05/21/jekyll-n-date.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/05/21/jekyll-n-date.html</guid>
-        
-        
-        <category>tutorial</category>
         
       </item>
     
