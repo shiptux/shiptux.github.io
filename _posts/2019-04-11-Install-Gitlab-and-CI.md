@@ -14,7 +14,7 @@ category: experiance
 
     这里使用 `RPM` 方式安装 `Gitlab` 平台。
 
-    1. 首先安装所需的依赖软件
+1. 首先安装所需的依赖软件
 
     ```
     sudo yum install -y curl policycoreutils-python openssh-server #安装几个必要的基础软件
@@ -24,7 +24,7 @@ category: experiance
     sudo systemctl reload firewalld #重载防火墙
     ```
 
-    2.接下来安装 `Postfix` 。一个邮件服务器，为了用来发送提醒邮件。
+2.接下来安装 `Postfix` 。一个邮件服务器，为了用来发送提醒邮件。
 
     ```
     sudo yum install postfix #安装
@@ -32,27 +32,26 @@ category: experiance
     sudo systemctl start postfix #启动
     ```  
 
-    3. 之前安装的时候往往需要手动修改软件源。*比如百度搜索出来的大多数都是这样的* 但是我尝试安装后发现官方的脚本已经可以自动修改安装源了。自动使用的是 `TUNA` 软件源。
+3. 之前安装的时候往往需要手动修改软件源。*比如百度搜索出来的大多数都是这样的* 但是我尝试安装后发现官方的脚本已经可以自动修改安装源了。自动使用的是 `TUNA` 软件源。
 
     <code>curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash</code>
 
-    4. 接下来使用 `yum` 安装 `Gitlab` 即可。
+4. 接下来使用 `yum` 安装 `Gitlab` 即可。
 
     <code>sudo yum install -y gitlab-ce</code>
 
 ## Gitlab 的相关配置 
 
-    1. 配置 `Gitlab` 的外部连接
+1. 配置 `Gitlab` 的外部连接
 
     修改 `Gitlab` 的配置文件。该文件在`/etc/gitlab/gitlab.rb`。修改这行 <code>external_url "http://gitlab.example.com" </code>。 因为安装在这里的 `Gitlab` 并没有打算对外服务。如果读者刚好跟我一样是某校的，提供一个某校某老师搭建在内网的 `Gitlab` [地址](10.1.1.50)给你尝试。
 
-    2. 修改好配置文件之后执行
+2. 修改好配置文件之后执行
 
-    ```
-    sudo gitlab-ctl reconfigure #Tips:Gitlab的命令行控制是 gitlab-ctl
-    sudo gitlab-ctl start
-    ```
+```
+sudo gitlab-ctl reconfigure #Tips:Gitlab的命令行控制是 gitlab-ctl
+sudo gitlab-ctl start
+```
 
-    3. 在浏览器中输入配置的地址即可登陆。初次登录设置 root 账户的密码。 之后就可以看到相关的配图。  
+3. 在浏览器中输入配置的地址即可登陆。初次登录设置 root 账户的密码。 之后就可以看到相关的配图。  
 
-    
