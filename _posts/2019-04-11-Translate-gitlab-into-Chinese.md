@@ -194,7 +194,7 @@ socks5 127.0.0.1 1080
 
 <code>proxychains4 git clone https://gitlab.com/xhang/gitlab.git</code>
 
-使用代理拉取，虽然还是很慢 )： 。
+使用代理拉取，虽然还是很慢 )： 
 
 参考资料:
 [proxychain](https://github.com/rofl0r/proxychains-ng)

@@ -6,9 +6,294 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 11 Apr 2019 03:50:17 -0400</pubDate>
-    <lastBuildDate>Thu, 11 Apr 2019 03:50:17 -0400</lastBuildDate>
+    <pubDate>Thu, 18 Apr 2019 16:05:31 +0800</pubDate>
+    <lastBuildDate>Thu, 18 Apr 2019 16:05:31 +0800</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>不知道怎么就搞成了代理安装</title>
+        <description>&lt;p&gt;&lt;em&gt;Gitlab 已经安装完成，本来汉化内容过于简单没有必要另起一篇的。但因为 Gitlab的服务器在国外。使用 git 获取 gitlab 的时候接收对象永远停在了百分之八十八，所以不得不考虑安装代理另谋出路&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;安装代理&quot;&gt;安装代理&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;首先删除掉克隆接近完成却一直没有然后的仓库&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[shiptux@localhost ~]$ git clone https://gitlab.com/xhang/gitlab.git
+正克隆到 'gitlab'...
+remote: Enumerating objects: 951929, done.
+remote: Counting objects: 100% (951929/951929), done.
+remote: Compressing objects: 100% (195668/195668), done.
+... 对象中:  88% (838194/951929), 168.57 MiB | 168.00 KiB/s   
+^C
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;安装科学上网软件&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Centos&lt;/code&gt; 本身默认的软件源比较保守，缺乏很多软件。所以需要安装一下 &lt;code class=&quot;highlighter-rouge&quot;&gt;epel&lt;/code&gt; 软件源代作为扩展。 &lt;code class=&quot;highlighter-rouge&quot;&gt;epel&lt;/code&gt; 的全称是 &lt;code class=&quot;highlighter-rouge&quot;&gt;Extra Packages for Enterprise Linux&lt;/code&gt;。旨在为 &lt;code class=&quot;highlighter-rouge&quot;&gt;Linux&lt;/code&gt; 提供高质量的软件项目。&lt;/p&gt;
+
+&lt;p&gt;首先安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;epel&lt;/code&gt; 源&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo yum install epel-release -y&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;然后安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo yum install python-pip -y&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;更新 &lt;code class=&quot;highlighter-rouge&quot;&gt;pip&lt;/code&gt; 本体&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo pip install --upgrade pip&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;安装某个软件&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo pip install 某软件名&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;编辑一下 &lt;code class=&quot;highlighter-rouge&quot;&gt;Json&lt;/code&gt; 格式的配置文件&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;vim /etc/sslocal.json&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;server&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;your_server_ip&quot;&lt;/span&gt;, &lt;span class=&quot;c&quot;&gt;#ss服务器IP&lt;/span&gt;
+
+    &lt;span class=&quot;s2&quot;&gt;&quot;server_port&quot;&lt;/span&gt;:your_server_port, &lt;span class=&quot;c&quot;&gt;#端口&lt;/span&gt;
+
+    &lt;span class=&quot;s2&quot;&gt;&quot;local_address&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;127.0.0.1&quot;&lt;/span&gt;, &lt;span class=&quot;c&quot;&gt;#本地ip&lt;/span&gt;
+
+    &lt;span class=&quot;s2&quot;&gt;&quot;local_port&quot;&lt;/span&gt;:1080, &lt;span class=&quot;c&quot;&gt;#本地端口&lt;/span&gt;
+
+    &lt;span class=&quot;s2&quot;&gt;&quot;password&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;your_server_passwd&quot;&lt;/span&gt;,#连接ss密码
+
+    &lt;span class=&quot;s2&quot;&gt;&quot;timeout&quot;&lt;/span&gt;:300, &lt;span class=&quot;c&quot;&gt;#等待超时&lt;/span&gt;
+
+    &lt;span class=&quot;s2&quot;&gt;&quot;method&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;rc4-md5&quot;&lt;/span&gt;, &lt;span class=&quot;c&quot;&gt;#加密方式 这里要和服务器的一致。&lt;/span&gt;
+
+    &lt;span class=&quot;s2&quot;&gt;&quot;fast_open&quot;&lt;/span&gt;:false, &lt;span class=&quot;c&quot;&gt;# true 或 false&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;根据自己的情况而填写。完成后可以使用&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo sslocal -c /etc/ssloal.json&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;运行。可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;nohup&lt;/code&gt; 等程序来让它后台运行。&lt;/p&gt;
+
+&lt;p&gt;这里使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;systemctl&lt;/code&gt; 来控制会更方便&lt;/p&gt;
+
+&lt;p&gt;使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;VIM&lt;/code&gt; 编辑器&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo vim /etc/systemd/system/sslocal.service&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;写入以下内容&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Unit]
+&lt;span class=&quot;nv&quot;&gt;Description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;SS server
+&lt;span class=&quot;nv&quot;&gt;After&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;syslog.target network.target
+&lt;span class=&quot;nv&quot;&gt;Wants&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;network.target
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Service]
+&lt;span class=&quot;nv&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;simple
+&lt;span class=&quot;nv&quot;&gt;ExecStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/bin/sslocal &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /etc/sslocal.json
+&lt;span class=&quot;nv&quot;&gt;ExecStop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/bin/sslocal &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; stop
+&lt;span class=&quot;nv&quot;&gt;RestartSec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1min
+&lt;span class=&quot;nv&quot;&gt;KillMode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;control-group
+&lt;span class=&quot;nv&quot;&gt;Restart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;always
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Install]
+&lt;span class=&quot;nv&quot;&gt;WantBy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;sudo systemctl enable sslocal.service&lt;/code&gt; 开机自启&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo systemctl start sslocal.service&lt;/code&gt; 启动服务&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo systemctl status sslocal.service&lt;/code&gt; 查看该服务状态&lt;/p&gt;
+
+&lt;p&gt;因为安装的某个软件提供的代理是 &lt;code class=&quot;highlighter-rouge&quot;&gt;sock&lt;/code&gt; 代理，本身很多服务并不支持。所以安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;provixy&lt;/code&gt; 来实现强制使用。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;proxychains&lt;/code&gt; 实现强制性 &lt;code class=&quot;highlighter-rouge&quot;&gt;socks&lt;/code&gt; 代理&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;下载源代码&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git clone git@github.com:rofl0r/proxychains-ng.git&lt;code&gt;&lt;/code&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;因为在服务器上 密钥鉴定失败 于是用该服务器生成了一个密钥对上传到 github 上&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;shiptux@localhost ~]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone git@github.com:rofl0r/proxychains-ng.git
+正克隆到 &lt;span class=&quot;s1&quot;&gt;'proxychains-ng'&lt;/span&gt;...
+The authenticity of host &lt;span class=&quot;s1&quot;&gt;'github.com (13.229.188.59)'&lt;/span&gt; can&lt;span class=&quot;s1&quot;&gt;'t be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+RSA key fingerprint is MD5:16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '&lt;/span&gt;github.com,13.229.188.59&lt;span class=&quot;s1&quot;&gt;' (RSA) to the list of known hosts.
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[shiptux@localhost ~]$ ssh-keygen 
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/shiptux/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/shiptux/.ssh/id_rsa.
+Your public key has been saved in /home/shiptux/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:QMpjn9iuwegO+4a4hdU72erpKLKG1n7jfaHOOhHvyeQ shiptux@localhost.localdomain
+The key'&lt;/span&gt;s randomart image is:
++---[RSA 2048]----+
+|      &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;          |
+|   &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; o           |
+|    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;          |
+|   o &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; o         |
+|  &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; o &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; S        |
+| o o &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; o &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;       |
+|&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;.+ &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; O o &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;      |
+|&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;B.o XoE &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;       |
+|BB&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;+Oo&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;+.        |
++----[SHA256]-----+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;shiptux@localhost ~]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;shiptux@localhost ~]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; ~/.ssh/id_rsa
+id_rsa      id_rsa.pub  
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;shiptux@localhost ~]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; ~/.ssh/id_rsa
+id_rsa      id_rsa.pub  
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;shiptux@localhost ~]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; ~/.ssh/id_rsa.pub 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAZor7l/b1ZLJXBsm2LyOYXKRBXpbCkslMFjVs/VGjrZgMvPQZv/6pYdNZbVDLFeT4srX2nA35NHuupI6QJsqMAcmHc+JjtNkGG0yOa2Vj+QpplIjK+09NqAqOIP3hQUcOrmM4qIddG3FS8vt5f8D3h4ryIlmmx1zQDe7YIhTG9dbM+aACJupcT0AiZpvBGhT9wS/jHe8iW3noiULj4WK7YCaxnDLTpKjyO5vYJNtzoDUcEVINJS1FKJqv4unmN2VTWno3k/Kasrlvi62ydq4+hUHUizeKdqifAkC6NP7IFqqYggF3oU1bPh1aihmpk/MrIzL/ax8F3ZkCco2cCW4N shiptux@localhost.localdomain
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;克隆完成后进入该目录进行编译和安装工作&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;make: cc：命令未找到
+make: *** [src/nameinfo.o] 错误 127
+## 错误提示 C 编译器未发现 先要安装编译器
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;sudo yum install gcc -y&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;make ##重新执行编译
+
+```bash
+cd proxychains-ng
+./configure --prefix=/usr --sysconfdir=/etc 
+make
+make install
+cd .. &amp;amp;&amp;amp; rom -rf proxychains-ng
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;proxychain 的配置文件&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dynamic_chain
+chain_len &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1
+proxy_dns
+remote_dns_subnet 224
+tcp_read_time_out 15000
+tcp_connect_time_out 8000
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ProxyList]
+socks5 127.0.0.1 1080
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;接下来使用命令的时候可以使用&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;proxychains4 git clone https://gitlab.com/xhang/gitlab.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;使用代理拉取，虽然还是很慢 )：&lt;/p&gt;
+
+&lt;p&gt;参考资料:
+&lt;a href=&quot;https://github.com/rofl0r/proxychains-ng&quot;&gt;proxychain&lt;/a&gt;
+&lt;a href=&quot;https://blog.csdn.net/gengxuelei/article/details/52514603&quot;&gt;利用proxychains在终端使用代理&lt;/a&gt;
+&lt;a href=&quot;https://www.cnblogs.com/jehorn/p/10161074.html&quot;&gt;linux配置某软件&lt;/a&gt;
+&lt;a href=&quot;https://www.jianshu.com/p/11585058cbe9&quot;&gt;CentOS下安装shadowsocks代理的方法&lt;/a&gt;
+&lt;a href=&quot;https://www.cnblogs.com/gaoyuechen/p/7683471.html&quot;&gt;什么是epel&lt;/a&gt;
+&lt;a href=&quot;https://gitlab.com/xhang/gitlab/wikis/home&quot;&gt;Gitlab汉化指南&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 11 Apr 2019 14:23:00 +0800</pubDate>
+        <link>http://yourdomain.com/experiance/2019/04/11/Translate-gitlab-into-Chinese.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/experiance/2019/04/11/Translate-gitlab-into-Chinese.html</guid>
+        
+        
+        <category>experiance</category>
+        
+      </item>
+    
+      <item>
+        <title>在 Centos 下安装 Gitlab </title>
+        <description>&lt;p&gt;&lt;em&gt;Gitlab 是一个开源的代码托管平台，类似于 Github 。同时它也提供了供个人，企业以及组织搭建自己的代码托管平台的功能。Gitlab 提供两个分支, ce 和 ee分别是企业版和社区版。一般情况下使用社区版本就已经足够。&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;在-centos-7-下安装-gitlab&quot;&gt;在 Centos 7 下安装 Gitlab&lt;/h2&gt;
+
+&lt;p&gt;根据&lt;a href=&quot;https://about.gitlab.com/install/#centos-7&quot;&gt;官方文档&lt;/a&gt;来安装非常的简单，不需要手动修改软件源设置，也不需要其它复杂的设置。根据自己的需要可以选用安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;rpm&lt;/code&gt; 包或者是 直接使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Docker&lt;/code&gt; 来进行安装。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;这里使用 `RPM` 方式安装 `Gitlab` 平台。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;首先安装所需的依赖软件&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sudo yum install -y curl policycoreutils-python openssh-server #安装几个必要的基础软件
+ sudo systemctl enable sshd #允许 sshd 服务开机自启
+ sudo systemctl start sshd #启动 sshd 服务
+ sudo firewall-cmd --permanent --add-service=http #防火墙允许 http 协议
+ sudo systemctl reload firewalld #重载防火墙
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;2.接下来安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;Postfix&lt;/code&gt; 。一个邮件服务器，为了用来发送提醒邮件。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```
+sudo yum install postfix #安装
+sudo systemctl enable postfix #开机自启动
+sudo systemctl start postfix #启动
+```  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;之前安装的时候往往需要手动修改软件源。&lt;em&gt;比如百度搜索出来的大多数都是这样的&lt;/em&gt; 但是我尝试安装后发现官方的脚本已经可以自动修改安装源了。自动使用的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;TUNA&lt;/code&gt; 软件源。&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;接下来使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;yum&lt;/code&gt; 安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt; 即可。&lt;/p&gt;
+
+    &lt;p&gt;&lt;code&gt;sudo yum install -y gitlab-ce&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;gitlab-的相关配置&quot;&gt;Gitlab 的相关配置&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;配置 &lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt; 的外部连接&lt;/p&gt;
+
+    &lt;p&gt;修改 &lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt; 的配置文件。该文件在&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/gitlab/gitlab.rb&lt;/code&gt;。修改这行 &lt;code&gt;external_url &quot;http://gitlab.example.com&quot; &lt;/code&gt;。 因为安装在这里的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt; 并没有打算对外服务。如果读者刚好跟我一样是某校的，提供一个某校某老师搭建在内网的 &lt;code class=&quot;highlighter-rouge&quot;&gt;Gitlab&lt;/code&gt; &lt;a href=&quot;10.1.1.50&quot;&gt;地址&lt;/a&gt;给你尝试。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改好配置文件之后执行&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gitlab-ctl reconfigure #Tips:Gitlab的命令行控制是 gitlab-ctl
+sudo gitlab-ctl start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在浏览器中输入配置的地址即可登陆。初次登录设置 root 账户的密码。 之后就可以看到相关的配图。&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Thu, 11 Apr 2019 10:30:00 +0800</pubDate>
+        <link>http://yourdomain.com/experiance/2019/04/11/Install-Gitlab-and-CI.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/experiance/2019/04/11/Install-Gitlab-and-CI.html</guid>
+        
+        
+        <category>experiance</category>
+        
+      </item>
     
       <item>
         <title>智慧农业监测系统的云服务器完整部署过程</title>
@@ -97,10 +382,56 @@
 &lt;/ol&gt;
 
 </description>
-        <pubDate>Wed, 27 Mar 2019 10:49:00 -0400</pubDate>
+        <pubDate>Wed, 27 Mar 2019 10:49:00 +0800</pubDate>
         <link>http://yourdomain.com/2019/03/27/Deploy-Server.html</link>
         <guid isPermaLink="true">http://yourdomain.com/2019/03/27/Deploy-Server.html</guid>
         
+        
+      </item>
+    
+      <item>
+        <title>记录一下在live系统和windows下读写efi分区的方法</title>
+        <description>&lt;p&gt;##在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Windows&lt;/code&gt; 下读写 &lt;code class=&quot;highlighter-rouge&quot;&gt;EFI&lt;/code&gt;  分区&lt;/p&gt;
+
+&lt;p&gt;以&lt;/p&gt;
+
+&lt;p&gt;管理员权限&lt;/p&gt;
+
+&lt;p&gt;运行CMD&lt;/p&gt;
+
+&lt;p&gt;然后输入：&lt;/p&gt;
+
+&lt;p&gt;diskpart&lt;/p&gt;
+
+&lt;p&gt;，启动diskpart工具，在diskpart的提示符下依次输入&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;list disk————————-列出系统中拥有的磁盘&lt;/li&gt;
+  &lt;li&gt;select disk 0——————–选择EFI引导分区所在的磁盘，请根据实际情况选择&lt;/li&gt;
+  &lt;li&gt;list partition——————–列出所选磁盘拥有的分区&lt;/li&gt;
+  &lt;li&gt;select partition 1—————选择EFI引导分区，类型为系统的分区，就是EFI引导分区&lt;/li&gt;
+  &lt;li&gt;assign letter=p—————–为所选分区分配盘符，请分配空闲盘符&lt;/li&gt;
+  &lt;li&gt;remove letter=p—————-修改完成后，移除盘符（如果不移除，重启计算机以后，会自动移除）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这样暂时还不能读取 需要安装 Total Commander 软件&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://bbs.pcbeta.com/viewthread-1517702-1-1.html&quot;&gt;原文链接&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;##live-system&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fdisk &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+mount /dev/efi所在地 /你想挂的地方
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /挂的地方
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 17 Oct 2018 19:20:18 +0800</pubDate>
+        <link>http://yourdomain.com/tutorial/2018/10/17/r-n-w-efi.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/10/17/r-n-w-efi.html</guid>
+        
+        
+        <category>tutorial</category>
         
       </item>
     
@@ -249,55 +580,9 @@ PING www.a.shifen.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;14.215.177.3
 &lt;p&gt;​	经过这次的经历，我感觉自己的硬件知识不是很牢靠，知识过于碎片化，不过这次我没有重装系统逃避问题而是选择和问题折腾到底是一个好的转变。外网真的是有很多很全的资料，英语目前还是相当的重要。&lt;/p&gt;
 
 </description>
-        <pubDate>Wed, 17 Oct 2018 14:00:00 -0400</pubDate>
+        <pubDate>Wed, 17 Oct 2018 14:00:00 +0800</pubDate>
         <link>http://yourdomain.com/tutorial/2018/10/17/Save-my-pc.html</link>
         <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/10/17/Save-my-pc.html</guid>
-        
-        
-        <category>tutorial</category>
-        
-      </item>
-    
-      <item>
-        <title>记录一下在live系统和windows下读写efi分区的方法</title>
-        <description>&lt;p&gt;##在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Windows&lt;/code&gt; 下读写 &lt;code class=&quot;highlighter-rouge&quot;&gt;EFI&lt;/code&gt;  分区&lt;/p&gt;
-
-&lt;p&gt;以&lt;/p&gt;
-
-&lt;p&gt;管理员权限&lt;/p&gt;
-
-&lt;p&gt;运行CMD&lt;/p&gt;
-
-&lt;p&gt;然后输入：&lt;/p&gt;
-
-&lt;p&gt;diskpart&lt;/p&gt;
-
-&lt;p&gt;，启动diskpart工具，在diskpart的提示符下依次输入&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;list disk————————-列出系统中拥有的磁盘&lt;/li&gt;
-  &lt;li&gt;select disk 0——————–选择EFI引导分区所在的磁盘，请根据实际情况选择&lt;/li&gt;
-  &lt;li&gt;list partition——————–列出所选磁盘拥有的分区&lt;/li&gt;
-  &lt;li&gt;select partition 1—————选择EFI引导分区，类型为系统的分区，就是EFI引导分区&lt;/li&gt;
-  &lt;li&gt;assign letter=p—————–为所选分区分配盘符，请分配空闲盘符&lt;/li&gt;
-  &lt;li&gt;remove letter=p—————-修改完成后，移除盘符（如果不移除，重启计算机以后，会自动移除）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这样暂时还不能读取 需要安装 Total Commander 软件&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://bbs.pcbeta.com/viewthread-1517702-1-1.html&quot;&gt;原文链接&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;##live-system&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fdisk &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
-mount /dev/efi所在地 /你想挂的地方
-&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /挂的地方
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-</description>
-        <pubDate>Wed, 17 Oct 2018 07:20:18 -0400</pubDate>
-        <link>http://yourdomain.com/tutorial/2018/10/17/r-n-w-efi.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/10/17/r-n-w-efi.html</guid>
         
         
         <category>tutorial</category>
@@ -355,9 +640,9 @@ mount /dev/efi所在地 /你想挂的地方
 
 &lt;p&gt;推荐一下《Pro Git》这本书，你可以&lt;a href=&quot;https://git-scm.com/book/zh/&quot;&gt;在这里免费读到这本书的简体中文版&lt;/a&gt; 哦，对，你还需要了解一下 &lt;a href=&quot;http://wowubuntu.com/markdown/basic.html&quot;&gt;MarkDown 排版的基本方法&lt;/a&gt;。另外文章正文内容还可以参考一下这份&lt;a href=&quot;https://github.com/mzlogin/chinese-copywriting-guidelines&quot;&gt;中文文案排版指北&lt;/a&gt; 。&lt;/p&gt;
 </description>
-        <pubDate>Thu, 13 Sep 2018 23:12:11 -0400</pubDate>
-        <link>http://yourdomain.com/2018/09/13/md-2-pdf.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/2018/09/13/md-2-pdf.html</guid>
+        <pubDate>Fri, 14 Sep 2018 11:12:11 +0800</pubDate>
+        <link>http://yourdomain.com/2018/09/14/md-2-pdf.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2018/09/14/md-2-pdf.html</guid>
         
         
       </item>
@@ -431,7 +716,7 @@ git push origin master
 
 &lt;p&gt;还有 &lt;code class=&quot;highlighter-rouge&quot;&gt;Pull request&lt;/code&gt; 请求合并等方式 敬请你的探索，这里只做简单介绍。&lt;/p&gt;
 </description>
-        <pubDate>Tue, 11 Sep 2018 04:02:00 -0400</pubDate>
+        <pubDate>Tue, 11 Sep 2018 16:02:00 +0800</pubDate>
         <link>http://yourdomain.com/tutorial/2018/09/11/Use-git-in-class.html</link>
         <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/09/11/Use-git-in-class.html</guid>
         
@@ -554,7 +839,7 @@ git push origin master
 
 &lt;p&gt;现在享受它吧。&lt;/p&gt;
 </description>
-        <pubDate>Tue, 11 Sep 2018 04:02:00 -0400</pubDate>
+        <pubDate>Tue, 11 Sep 2018 16:02:00 +0800</pubDate>
         <link>http://yourdomain.com/tutorial/2018/09/11/How-to-install-double-system.html</link>
         <guid isPermaLink="true">http://yourdomain.com/tutorial/2018/09/11/How-to-install-double-system.html</guid>
         
@@ -585,46 +870,9 @@ ubuntu  ALL=(ALL:ALL) ALL
 
 &lt;p&gt;一般教程往往建议在 &lt;code&gt;root    ALL=(ALL:ALL) ALL&lt;/code&gt; 下增添或者修改为 &lt;code&gt;ubuntu  ALL=(ALL:ALL) NOPASSWD:ALL&lt;/code&gt; 但是我在实际使用中发现这样还是需要每次输入密码，而且系统下已经有 &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt; 用户组权限的设置 我将最后一行 &lt;code&gt;sudo ALL=(ALL:ALL) ALL&lt;/code&gt; 改为 &lt;code&gt;sudo ALL=(ALL:ALL) NOPASSWD:ALL&lt;/code&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sat, 26 May 2018 02:12:22 -0400</pubDate>
+        <pubDate>Sat, 26 May 2018 14:12:22 +0800</pubDate>
         <link>http://yourdomain.com/2018/05/26/Nopawd-sudoer.html</link>
         <guid isPermaLink="true">http://yourdomain.com/2018/05/26/Nopawd-sudoer.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>安装 DNScrypt 和通过 Snap 安装主题</title>
-        <description>&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;DNScrypt&lt;/code&gt; 是…我就不搬了，只要知道他能防止  &lt;code class=&quot;highlighter-rouge&quot;&gt;DNS&lt;/code&gt; 污染避免很多小广告就对了&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ubuntu16.04&lt;/code&gt; 下安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;DNScrypt&lt;/code&gt; 非常方便，这里安装的是服务端,在云主机上安装&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;code&gt; sudo apt-get install dnscrypt-proxy &lt;/code&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;启用服务&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;code&gt; dnscrypt-proxy --daemonize --local-address=127.0.0.3:53 --resover-name=cisco&lt;/code&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;将 &lt;code class=&quot;highlighter-rouge&quot;&gt;PC&lt;/code&gt; 上的 &lt;code class=&quot;highlighter-rouge&quot;&gt;DNS&lt;/code&gt; 设置为手动，将自己的主机地址设置为 &lt;code class=&quot;highlighter-rouge&quot;&gt;DNS&lt;/code&gt; 地址&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ubuntu18.04&lt;/code&gt; 下通过 &lt;code class=&quot;highlighter-rouge&quot;&gt;SNAP&lt;/code&gt; 安装主题&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;code&gt;sudo sanp install communitheme --edge &lt;/code&gt;&lt;/p&gt;
-</description>
-        <pubDate>Tue, 22 May 2018 13:34:00 -0400</pubDate>
-        <link>http://yourdomain.com/2018/05/22/Install-dnscrypt-proxy.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/2018/05/22/Install-dnscrypt-proxy.html</guid>
         
         
       </item>
@@ -694,42 +942,9 @@ crontab: &lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/sensible-editor&quot;&l
 
 &lt;p&gt;使用 &lt;code&gt;sudo service cron start&lt;/code&gt; 启动&lt;/p&gt;
 </description>
-        <pubDate>Tue, 22 May 2018 10:20:20 -0400</pubDate>
+        <pubDate>Tue, 22 May 2018 22:20:20 +0800</pubDate>
         <link>http://yourdomain.com/2018/05/22/crontab-2-jekyll.html</link>
         <guid isPermaLink="true">http://yourdomain.com/2018/05/22/crontab-2-jekyll.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>给云主机重装系统</title>
-        <description>&lt;p&gt;在购买一些主机商的服务后，有时他们提供的镜像中带了一些卸载不掉的东西就像是买了手机预装了软件一样，这时候我们选择手动安装纯净版。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget --no-check-certificate -qO DebianNET.sh &quot;http://status.moruy.cn/DebianNET.sh&quot; &amp;amp;&amp;amp; chmod a+x DebianNET.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Centos&lt;/code&gt; 先要安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;gawk&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;sudo yum install -y gawk sed grep &amp;lt; /code&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;切换到超级用户&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;sudo -i &amp;lt; /code&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ubuntu 16.04 x64&lt;/code&gt; :&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash DebianNET.sh -u xenial -v 64
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;安装 &lt;code class=&quot;highlighter-rouge&quot;&gt;Debian 8 x64&lt;/code&gt; :&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash DebianNET.sh -d jessie -v amd64
-bash DEbianNET.sh -d 8 -v 64
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;第一步选择 &lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;&lt;/p&gt;
-</description>
-        <pubDate>Mon, 21 May 2018 08:31:01 -0400</pubDate>
-        <link>http://yourdomain.com/2018/05/21/Reinstall-system.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/2018/05/21/Reinstall-system.html</guid>
         
         
       </item>
